@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.ui.Model;
+
 
 import group3.com.example.retail.product.Product;
 import group3.com.example.retail.product.ProductService;
@@ -20,30 +22,41 @@ public class ProductController {
 	@Autowired
 	private ProductService productService;
 	
+	@Autowired
+	private ProductToProductForm productToProductForm;
+	
 	
 	@RequestMapping(value="/products")   // getAllProducts()
-	public List<Product> getAllProducts() {
+	public List<Product> getAllProducts(Model model) {
+        model.addAttribute("products", productService.getAllProducts());
 		return productService.getAllProducts();
     }
 	
 	@RequestMapping(value="/products/{id}")
-	public Optional<Product> getProduct(@PathVariable Long id) { // getProduct()
-		return productService.getProduct(id);
+	public String getProduct(@PathVariable Long Id, Model model) { // getProduct()
+        model.addAttribute("product", productService.getProduct((Id)));
+        return "product/show";
+
 	}
 	
 	@RequestMapping(value="/products", method=RequestMethod.POST)
-	public void addProduct(@RequestBody Product prod) {
-		productService.addProduct(prod);
+	public String addProduct(Model model) {
+		model.addAttribute("productForm", new ProductForm());
+		return "product/productform";
 	}
 	
 	@RequestMapping(method=RequestMethod.PUT, value="/products/{id}")
-	public void updateProduct(@RequestBody Product prod, @PathVariable Long Id) {
-		 productService.updateProduct(Id, prod);
+	public String updateProduct(@PathVariable Long Id, Model model) {
+         Product product = productService.getProduct(Id);
+		 ProductForm productForm = productToProductForm.convert(product);
+		 model.addAttribute("productForm", productForm);
+		 return "product/productform";
 	}
 	
 	@RequestMapping(method=RequestMethod.DELETE, value="/product/{id}")
-	public void deleteProduct(@PathVariable Long Id) {
+	public String deleteProduct(@PathVariable Long Id) {
 		productService.deleteProduct(Id);
+		return "redirect:/product/list";
 	}
 	
 	

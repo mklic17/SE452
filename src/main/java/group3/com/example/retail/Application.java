@@ -16,13 +16,13 @@ public class Application implements CommandLineRunner {
 	public void run(String... args) throws Exception {
 		
 		logger.info("initializing Products");
-		
-		Product baseball = new Product("Baseball", "This is a baseball", 29.99);
-		prodRepo.save(baseball);
-		
-		Product basektball = new Product("Basektball", "This is a basektball", 49.99);
-		prodRepo.save(basektball);
-		
+//		
+//		Product baseball = new Product("Baseball", "This is a baseball", 29.99);
+//		prodRepo.save(baseball);
+//		
+//		Product basektball = new Product("Basektball", "This is a basektball", 49.99);
+//		prodRepo.save(basektball);
+//		
 
 	}
 

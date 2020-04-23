@@ -27,8 +27,8 @@ public class ProductService {
 	
 	
 	// Returns a single Product if it Exist or returns NULL
-	public Optional<Product> getProduct(Long Id) { 
-		return productRepository.findById(Id);
+	public Product getProduct(Long Id) { 
+		return productRepository.findById(Id).orElse(null);
 	} 
 	
 	
@@ -40,6 +40,9 @@ public class ProductService {
 	
 	// Updates a product with the information if it exists or creates a new product
 	public void updateProduct(Long Id, Product prod) {
+		// need to do a find first
+		// Then update
+		// then save
 		productRepository.save(prod);
 	}
 	
@@ -52,12 +55,12 @@ public class ProductService {
 	
 	
 	public void createTestProducts() {
-		Product p1 = new Product("Baseball", "This is a baseball", 19.99);
-		Product p2 = new Product("basketball", "This is a basketball", 49.99);
-		Product p3 = new Product("soccer ball", "This is a soccer ball", 29.99);
-		addProduct(p1);
-		addProduct(p2);
-		addProduct(p3);
+//		Product p1 = new Product("Baseball", "This is a baseball", 19.99);
+//		Product p2 = new Product("basketball", "This is a basketball", 49.99);
+//		Product p3 = new Product("soccer ball", "This is a soccer ball", 29.99);
+//		addProduct(p1);
+//		addProduct(p2);
+//		addProduct(p3);
 	}
 
 }
