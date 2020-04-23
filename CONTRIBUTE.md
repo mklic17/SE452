@@ -35,7 +35,7 @@ Total 3 (delta 2), reused 0 (delta 0)
 remote: Resolving deltas: 100% (2/2), completed with 2 local objects.
 remote: 
 remote: Create a pull request for 'branch-name' on GitHub by visiting:
-remote:      https://github.com/basil-issac/tree-classifier-mapper/pull/new/branch-name
+remote:      https://github.com/brianfujiwara/SE452/pull/new/branchname
 remote: 
 To github.com:github.com/brianfujiwara/SE452
  * [new branch]      branch-name -> branch-name`
