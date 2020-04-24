@@ -34,9 +34,8 @@ public class Catalog {
 	
 	@Column(name="name")
 	private String _name;
-	
 
-	 @ManyToMany
+	@ManyToMany
     Set<Product> _productAssignments;
 
 	

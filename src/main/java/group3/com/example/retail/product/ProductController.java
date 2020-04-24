@@ -1,22 +1,14 @@
 package group3.com.example.retail.product;
 
-import java.util.List;
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.ui.Model;
 
 
-import group3.com.example.retail.product.Product;
-import group3.com.example.retail.product.ProductService;
-import org.springframework.web.bind.annotation.RestController;
-
-
-@RestController
+@Controller
 public class ProductController {
 	
 	@Autowired
@@ -26,26 +18,25 @@ public class ProductController {
 	private ProductToProductForm productToProductForm;
 	
 	
-	@RequestMapping(value="/products")   // getAllProducts()
-	public List<Product> getAllProducts(Model model) {
+	@RequestMapping(value="/product", method = RequestMethod.GET)
+	public String getAllProducts(Model model) {
         model.addAttribute("products", productService.getAllProducts());
-		return productService.getAllProducts();
+		return "product/list";
     }
 	
-	@RequestMapping(value="/products/{id}")
+	@RequestMapping(value="/product/{id}")
 	public String getProduct(@PathVariable Long Id, Model model) { // getProduct()
         model.addAttribute("product", productService.getProduct((Id)));
         return "product/show";
-
 	}
 	
-	@RequestMapping(value="/products", method=RequestMethod.POST)
+	@RequestMapping(value="/product", method=RequestMethod.POST)
 	public String addProduct(Model model) {
 		model.addAttribute("productForm", new ProductForm());
 		return "product/productform";
 	}
 	
-	@RequestMapping(method=RequestMethod.PUT, value="/products/{id}")
+	@RequestMapping(method=RequestMethod.PUT, value="/product/{id}")
 	public String updateProduct(@PathVariable Long Id, Model model) {
          Product product = productService.getProduct(Id);
 		 ProductForm productForm = productToProductForm.convert(product);
@@ -56,14 +47,7 @@ public class ProductController {
 	@RequestMapping(method=RequestMethod.DELETE, value="/product/{id}")
 	public String deleteProduct(@PathVariable Long Id) {
 		productService.deleteProduct(Id);
-		return "redirect:/product/list";
+		return "product/list";
 	}
-	
-	
-	@RequestMapping(method=RequestMethod.PUT, value="/createTestProducts")
-	public void createTestProducts() {
-		productService.createTestProducts();
-	}
-
 
 }

@@ -53,14 +53,6 @@ public class ProductService {
 		productRepository.deleteById(Id);
 	}
 	
-	
-	public void createTestProducts() {
-//		Product p1 = new Product("Baseball", "This is a baseball", 19.99);
-//		Product p2 = new Product("basketball", "This is a basketball", 49.99);
-//		Product p3 = new Product("soccer ball", "This is a soccer ball", 29.99);
-//		addProduct(p1);
-//		addProduct(p2);
-//		addProduct(p3);
-	}
+
 
 }
