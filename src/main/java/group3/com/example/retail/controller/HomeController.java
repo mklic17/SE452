@@ -12,7 +12,7 @@ import org.springframework.stereotype.Controller;
 @Controller
 public class HomeController {
 		
-	@GetMapping({"/", "index", "home"})
+	@GetMapping({"/", "/index", "/home"})
 	public static String welcome(Model model) {
 		return "other/home";
 	}
@@ -31,5 +31,5 @@ public class HomeController {
         return "other/hello";
     }
 
-
+///
 }
