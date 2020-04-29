@@ -1,4 +1,4 @@
-package group3.com.example.retail.catalog;
+package group3.com.example.retail.category;
 
 import java.util.List;
 
@@ -11,14 +11,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 
 @RestController
-public class CatalogController {
+public class CategoryController {
 	
 	@Autowired
-	private CatalogService catalogService;
+	private CategoryService categoryService;
 	
-	@RequestMapping(value="/catalogs")   // getAllCatalogs()
-	public List<Catalog> getAllCatalogss() {
-		return catalogService.getAllCatalogs();
+	@RequestMapping(value="/category")   // getAllCategory()
+	public List<Category> getAllCategory() {
+		return categoryService.getAllCategory();
     }
 
 	

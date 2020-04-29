@@ -9,13 +9,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+
+import group3.com.example.retail.category.Category;
+
 import javax.persistence.ManyToMany;
 import javax.persistence.JoinTable;
 import javax.persistence.JoinColumn;
 
 import lombok.Data;
-
-import group3.com.example.retail.catalog.Catalog;
 
 
 @Data
@@ -25,16 +26,19 @@ public class Product {
 	
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long _Id;
+	private long Id;
     
     @Column(name="name")
-    private String _name;
+    private String name;
     
     @Column(name="description")
-    private String _description;
+    private String description;
     
     @Column(name="price")
-    private double _price;
+    private double price;
+//    
+//    @Column(name="isActive")
+//    private String isActive;
     
     @ManyToMany
     @JoinTable(
@@ -42,7 +46,7 @@ public class Product {
     		joinColumns=@JoinColumn(name="productId"),
     		inverseJoinColumns=@JoinColumn(name="categoryId")
     )
-    private Set<Catalog> _catalogAssignments;
+    private Set<Category> categoryAssignments;
 	
 	
 	
@@ -55,3 +59,4 @@ public class Product {
     
     
 }
+//

@@ -1,4 +1,4 @@
-package group3.com.example.retail.catalog;
+package group3.com.example.retail.category;
 
 import java.io.Serializable;
 import java.util.Set;
@@ -24,22 +24,22 @@ import lombok.ToString;
 
 @Data
 @Entity
-@Table(name="Catalog")
-public class Catalog {
+@Table(name="Category")
+public class Category {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	@Column(name="Id")
-	private Long _Id;
+	private Long Id;
 	
 	@Column(name="name")
-	private String _name;
+	private String name;
 
 	@ManyToMany
-    Set<Product> _productAssignments;
+    Set<Product> productAssignments;
 
 	
-//	public Catalog(String name) {
+//	public Category(String name) {
 //		_name = name;
 //	}
 //	

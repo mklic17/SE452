@@ -12,9 +12,9 @@ public class ProductToProductForm implements Converter<Product, ProductForm> {
     @Override
     public ProductForm convert(Product product) {
         ProductForm productForm = new ProductForm();
-        productForm.setId(product.get_Id());
-        productForm.setDescription(product.get_description());
-        productForm.setPrice(product.get_price());
+        productForm.setId(product.getId());
+        productForm.setDescription(product.getDescription());
+        productForm.setPrice(product.getPrice());
         return productForm;
     }
 

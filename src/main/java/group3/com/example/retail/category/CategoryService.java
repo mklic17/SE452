@@ -1,4 +1,4 @@
-package group3.com.example.retail.catalog;
+package group3.com.example.retail.category;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -11,38 +11,38 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 
 @Service
-public class CatalogService {
+public class CategoryService {
 	
 	@Autowired
-	private CatalogRepository catalogRepository;
+	private CategoryRepository categoryRepository;
 	
-	// getAllCatalogs
-	public List<Catalog> getAllCatalogs() {
-		ArrayList<Catalog> catalogList = new ArrayList<Catalog>();
-		for(Catalog cat : catalogRepository.findAll())
-			catalogList.add(cat);
-		return catalogList;
+	// getAllCategories
+	public List<Category> getAllCategory() {
+		ArrayList<Category> categoryList = new ArrayList<Category>();
+		for(Category cat : categoryRepository.findAll())
+			categoryList.add(cat);
+		return categoryList;
 	}
 	
-	// Returns a single catalog if it Exist or returns NULL
-	public Optional<Catalog> getCatalog(Long Id) { 
-		return catalogRepository.findById(Id);
+	// Returns a single category if it Exist or returns NULL
+	public Optional<Category> getCategory(Long Id) { 
+		return categoryRepository.findById(Id);
 	} 
 	
-	// Adds a catalog to the Database
-	public void addCatalog(Catalog cat) {
-		catalogRepository.save(cat);
+	// Adds a category to the Database
+	public void addCategory(Category cat) {
+		categoryRepository.save(cat);
 	}
 	
-	// Updates a catalog with the information if it exists or creates a new catalog
-	public void updateCatalog(Long Id, Catalog cat) {
-		catalogRepository.save(cat);
+	// Updates a category with the information if it exists or creates a new category
+	public void updateCategory(Long Id, Category cat) {
+		categoryRepository.save(cat);
 	}
 	
 	
-	// Removes a catalog from the Database 
-	public void deleteCatalog(Long Id) {
-		catalogRepository.deleteById(Id);
+	// Removes a category from the Database 
+	public void deleteCategory(Long Id) {
+		categoryRepository.deleteById(Id);
 	}
 
 	
