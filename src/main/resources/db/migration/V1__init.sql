@@ -22,18 +22,19 @@ CREATE TABLE Product (
 CREATE TABLE Category (
     ID SERIAL,
     name VARCHAR(40) NOT NULL,
+    parent VARCHAR(20),
 
     PRIMARY KEY (Id)
 );
 
-CREATE TABLE ProductsInCategory (
+CREATE TABLE Products_In_Category (
     ID SERIAL, -- Is this needed?
-    productID SERIAL,
-    categoryID SERIAL,
+    product_ID SERIAL,
+    category_ID SERIAL,
 
     PRIMARY KEY (Id),
-    FOREIGN KEY (productID) REFERENCES Product(ID),
-    FOREIGN KEY (categoryID) REFERENCES Category(ID)
+    FOREIGN KEY (product_ID) REFERENCES Product(ID),
+    FOREIGN KEY (category_ID) REFERENCES Category(ID)
 );
 
 -- CREATE TABLE Customer (

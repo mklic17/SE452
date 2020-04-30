@@ -4,22 +4,36 @@ import java.util.List;
 
 
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
 
 
 
 
-@RestController
+@Controller
+@RequestMapping(value="/category")   // getAllCategory()
+
 public class CategoryController {
 	
 	@Autowired
 	private CategoryService categoryService;
 	
-	@RequestMapping(value="/category")   // getAllCategory()
-	public List<Category> getAllCategory() {
-		return categoryService.getAllCategory();
-    }
-
 	
+	@GetMapping("/")   // getAllCategory()
+	public ModelAndView getAllCategory() {
+		ModelAndView mnv = new ModelAndView();
+		mnv.setViewName("category/listAllCategory");
+		mnv.addObject("categories", categoryService.getAllCategory());
+		return mnv;
+    }
+	
+	public String getNameFromID(Long Id) {
+		return categoryService.getCategory(Id).getName();
+	}
+
+
 }
+//

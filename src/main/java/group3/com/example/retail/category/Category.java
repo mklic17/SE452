@@ -34,14 +34,25 @@ public class Category {
 	
 	@Column(name="name")
 	private String name;
+	
+	@Column(name="parent")
+	private Long parent;
 
 	@ManyToMany
     Set<Product> productAssignments;
 
 	
-//	public Category(String name) {
-//		_name = name;
-//	}
-//	
+	public Category(String name, long parent) {
+		this.name = name;
+		this.parent = parent;
+	}
 	
+	public Category() {
+		//
+	}
+	
+
+	//
+
 }
+

@@ -21,22 +21,24 @@ INSERT INTO Product(name, description, price) VALUES('Golf Clubs', 'These are go
 
 
 --- Category
+-- DECLARE @sportsID AS VARCHAR;
+
+
 INSERT INTO Category(name) VALUES('Sports');
-INSERT INTO Category(name) VALUES('Baseball');
-INSERT INTO Category(name) VALUES('Soccer');
-INSERT INTO Category(name) VALUES('Basketball');
-INSERT INTO Category(name) VALUES('Golf');
+-- SET @sportsID = (SELECT ID FROM Category WHERE name = 'Sports');
+
+INSERT INTO Category(name, parent) VALUES('Baseball', (SELECT ID FROM Category WHERE name = 'Sports'));
+INSERT INTO Category(name, parent) VALUES('Soccer', (SELECT ID FROM Category WHERE name = 'Sports'));
+INSERT INTO Category(name, parent) VALUES('Basketball', (SELECT ID FROM Category WHERE name = 'Sports'));
+INSERT INTO Category(name, parent) VALUES('Golf', (SELECT ID FROM Category WHERE name = 'Sports'));
 
 
 --- ProductsInCategory
--- INSERT INTO ProductsInCategory(ID, productID, categoryID) VALUES('1a1a1a', '111111', 'aaaaa');
--- INSERT INTO ProductsInCategory(ID, productID, categoryID) VALUES('1a1a1b', '111111', 'aaaab');
--- INSERT INTO ProductsInCategory(ID, productID, categoryID) VALUES('1a1a1c', '222222', 'aaaaa');
--- INSERT INTO ProductsInCategory(ID, productID, categoryID) VALUES('1a1a1d', '222222', 'aaaac');
--- INSERT INTO ProductsInCategory(ID, productID, categoryID) VALUES('1a1a1e', '333333', 'aaaaa');
--- INSERT INTO ProductsInCategory(ID, productID, categoryID) VALUES('1a1a1f', '333333', 'aaaad');
--- INSERT INTO ProductsInCategory(ID, productID, categoryID) VALUES('1a1a1g', '444444', 'aaaaa');
--- INSERT INTO ProductsInCategory(ID, productID, categoryID) VALUES('1a1a1h', '444444', 'aaaae');
+INSERT INTO Products_In_Category(product_ID, category_ID) VALUES((SELECT ID FROM Product WHERE Name = 'Baseball Bat'), (SELECT ID FROM Category WHERE Name = 'Baseball'));
+INSERT INTO Products_In_Category(product_ID, category_ID) VALUES((SELECT ID FROM Product WHERE Name = 'Soccer Ball'), (SELECT ID FROM Category WHERE Name = 'Soccer'));
+INSERT INTO Products_In_Category(product_ID, category_ID) VALUES((SELECT ID FROM Product WHERE Name = 'Basketball Shooting Sleeve'), (SELECT ID FROM Category WHERE Name = 'Basketball'));
+INSERT INTO Products_In_Category(product_ID, category_ID) VALUES((SELECT ID FROM Product WHERE Name = 'Golf Clubs'), (SELECT ID FROM Category WHERE Name = 'Golf'));
+
 
 --- Customer
 -- INSERT INTO Customer (ID, firstName, lastName, email) VALUES ('aaaaa', 'Michael', 'Scott',  'mscott@dundermifflin.com');

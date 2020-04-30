@@ -25,8 +25,8 @@ public class CategoryService {
 	}
 	
 	// Returns a single category if it Exist or returns NULL
-	public Optional<Category> getCategory(Long Id) { 
-		return categoryRepository.findById(Id);
+	public Category getCategory(Long Id) { 
+		return categoryRepository.findById(Id).orElse(null);
 	} 
 	
 	// Adds a category to the Database

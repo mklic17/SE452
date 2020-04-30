@@ -2,6 +2,7 @@ package group3.com.example.retail.product;
 
 import javax.validation.Valid;
 
+import java.util.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -9,9 +10,13 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+
+import group3.com.example.retail.catalog.Catalog;
+import group3.com.example.retail.category.Category;
 
 
 @Controller
@@ -22,8 +27,8 @@ public class ProductController {
 	@Autowired
 	private ProductService productService;
 	
-	@Autowired
-	private ProductToProductForm productToProductForm;
+//	@Autowired
+//	private ProductToProductForm productToProductForm;
 	
 	
 	@GetMapping("/")
@@ -34,7 +39,7 @@ public class ProductController {
 		return mnv;
     }
 	
-	@GetMapping(value="/{Id}")
+	@GetMapping("/{Id}")
 	public ModelAndView getProduct(@PathVariable Long Id) { // getProduct()
 		ModelAndView mnv = new ModelAndView();
 		mnv.setViewName("product/show");
@@ -47,7 +52,7 @@ public class ProductController {
 		ModelAndView mnv = new ModelAndView();
 		mnv.setViewName("product/newProductform");
 		mnv.addObject("product", new Product());
-//		mav.addObject("category", getCategories()); 
+		mnv.addObject("allCategories", getCategories()); 
 		return mnv;
 	}
 	
@@ -67,7 +72,45 @@ public class ProductController {
 //	    logger.info("Form submitted successfully.");	    
 	    return mnv;
 	  }
-	//
+	
+	
+	@GetMapping("/edit/{Id}")
+	public ModelAndView addProduct(@PathVariable Long Id) {
+		ModelAndView mnv = new ModelAndView();
+		Product prod= productService.getProduct(Id);
+		mnv.setViewName("product/newProductform");
+		mnv.addObject("product", prod);
+//		mav.addObject("category", getCategories()); 
+		return mnv;
+	}
+	
+	
+	@PutMapping("/edit/submit")
+	public ModelAndView updateUser(@Valid Product prod, BindingResult result) {
+		ModelAndView mnv = new ModelAndView();
+	    if(result.hasErrors()) {
+//	       	logger.info("Validation errors while submitting form.");
+			mnv.setViewName("product/editProductform");
+	        mnv.addObject("product", prod);
+	        mnv.addObject("allCategories", getCategories());
+	        return mnv;
+	    }		//
+	    productService.updateProduct(prod.getId(), prod);
+	    
+	    mnv.addObject("product", productService.getProduct(prod.getId()));
+	    mnv.setViewName("product/show");
+//	    logger.info("Form submitted successfully.");	    
+	    return mnv;
+	}
+	
+	
+	private Collection<Category> getCategories() {
+		return Catalog.getCatalog().getAllStoreCategories();
+	}
+	
+	
+	
+	
 	
 //	@RequestMapping(method=RequestMethod.PUT, value="/product/{id}")
 //	public String updateProduct(@PathVariable Long Id, Model model) {
