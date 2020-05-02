@@ -11,5 +11,10 @@ public class CategoryFactory {
 	}
 	
 	
+//	public static ArrayList<Category> getCategory() {
+//		return CategoryController.getAllCategories();
+//	}
+//	
+	
 
 }

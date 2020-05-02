@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.ui.Model;
 
 import org.springframework.stereotype.Controller;
@@ -13,9 +14,12 @@ import org.springframework.stereotype.Controller;
 public class HomeController {
 		
 	@GetMapping({"/", "/index", "/home"})
-	public static String welcome(Model model) {
-		return "other/home";
+	public static ModelAndView welcome() {
+		ModelAndView mnv = new ModelAndView();
+		mnv.setViewName("other/home");
+		return mnv;
 	}
+	
 	
 	@GetMapping("/greeting")
 	public String greeting(@RequestParam(name="name", required=false, defaultValue="World") String name, Model model) {

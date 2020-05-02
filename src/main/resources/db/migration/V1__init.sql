@@ -29,7 +29,7 @@ CREATE TABLE Category (
 
 CREATE TABLE Products_In_Category (
     ID SERIAL, -- Is this needed?
-    product_ID SERIAL,
+    product_ID SERIAL, -- productID
     category_ID SERIAL,
 
     PRIMARY KEY (Id),

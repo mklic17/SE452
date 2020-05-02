@@ -20,9 +20,9 @@ public class Catalog {
 
 
 //	// Public way to create catalog, Singleton Allows only 1 to be constructed
-	public static Catalog getCatalog(ArrayList<Category> catInput) {
+	public static Catalog getCatalog(List<Category> list) {
 		if (storefrontCatalog == null) {
-			storefrontCatalog = new Catalog(catInput);
+			storefrontCatalog = new Catalog(list);
 		}
 		return storefrontCatalog;
 	}
@@ -30,28 +30,34 @@ public class Catalog {
 	
 	//
 	public static Catalog getCatalog() {
+		if (storefrontCatalog == null) {
+			storefrontCatalog = new Catalog(null);
+		}
 		return storefrontCatalog;
 	}
 	
 	
 	// private constructor
-	private Catalog(ArrayList<Category> catInput) {
+	private Catalog(List<Category> list) {
 		categoryMap = new HashMap<Long, Category>();
 		
-		this.head = CategoryFactory.createCategory(); // set main, default head
+		Catalog.head = CategoryFactory.createCategory("main", Long.valueOf(-1)); // set main, default head
 		
-		for(Category cat : catInput) {
-            Long parentId = cat.getParent();
-            
-            if (parentId == 0 || parentId == null) {
-            	Category temp = CategoryFactory.createCategory(cat.getName(), head.getId());
-                categoryMap.put(temp.getId(), temp);
-            } 
-            else {
-                categoryMap.put(cat.getId(), cat);
-            }
-        }
-//		buildTheCatalogNavigation(head);
+		if(list != null) {
+			for(Category cat : list) {
+				System.out.println("Building Catalog " + cat.getName());
+	            Long parentId = cat.getParent();
+	            
+	            if (parentId == 0 || parentId == null) {
+	            	Category temp = CategoryFactory.createCategory(cat.getName(), head.getId());
+	                categoryMap.put(temp.getId(), temp);
+	            } 
+	            else {
+	                categoryMap.put(cat.getId(), cat);
+	            }
+	        }
+//			buildTheCatalogNavigation(head);
+		}
 	}
 	
 	public Collection<Category> getAllStoreCategories() {
