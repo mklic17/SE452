@@ -118,13 +118,13 @@ public class ProductController {
 	}
 	
 	
-	@DeleteMapping("/delete/submit")
-	public ModelAndView deleteProduct(@Valid Product prod, BindingResult result) {
-		ModelAndView mnv = new ModelAndView();
-		mnv.
-		return mnv;
-
-	}
+//	@DeleteMapping("/delete/submit")
+//	public ModelAndView deleteProduct(@Valid Product prod, BindingResult result) {
+//		ModelAndView mnv = new ModelAndView();
+//		mnv.
+//		return mnv;
+//
+//	}
 	
 	
 	private Collection<Category> getCategories() {
