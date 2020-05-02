@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Spring Core Online Tutorial - Product Form</title>
+    <title>New Category</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 
     <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css"
@@ -17,9 +17,9 @@
 <body>
 <div class="container">
 
-    <h2>Product Details</h2>
+    <h2>Category Details</h2>
     <div>
-        <form class="form-group" action="#" th:action="@{/product/create}" th:object="${product}" method="POST">
+        <form class="form-group" action="#" th:action="@{/category/new}" th:object="${category}" method="POST">
 
 
             <div th:if="${#fields.hasErrors('*')}" class="alert alert-danger">
@@ -33,27 +33,39 @@
                 <div class="col-sm-10">
                     <input type="text" class="form-control" th:field="*{name}" th:errorclass="has-error"/>
                 </div>
-                <!-- <span class="help-block">
+                <span class="help-block">
                    <ul>
                        <li th:each="err : ${#fields.errors('name')}" th:text="${err}" />
                    </ul>
-                </span> -->
+                </span>
             </div>
 
 
-            <div class="form-group" th:class="${#fields.hasErrors('description')} ? 'form-group has-error' : 'form-group'">
+            <div class="form-group row"th:class="${#fields.hasErrors('parent')} ? 'form-group has-error' : 'form-group'">
+                <label for="parent" class="col-sm-2 col-form-label">ParentId: </label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" th:field="*{parent}" th:errorclass="has-error"/>
+                </div>
+                <span class="help-block">
+                   <ul>
+                       <li th:each="err : ${#fields.errors('parent')}" th:text="${err}" />
+                   </ul>
+                </span>
+            </div>
+
+            <!-- <div class="form-group" th:class="${#fields.hasErrors('description')} ? 'form-group has-error' : 'form-group'">
                 <label class="col-sm-2 control-label">Description:</label>
                 <div class="col-sm-10">
                     <input type="text" class="form-control" th:field="*{description}" th:errorclass="has-error"/>
                 </div>
-                    <!-- <span class="help-block">
+                    <span class="help-block">
                        <ul>
                            <li th:each="err : ${#fields.errors('description')}" th:text="${err}" />
                        </ul>
-                    </span> -->
-            </div>
+                    </span>
+            </div> -->
 
-            <div class="form-group" th:class="${#fields.hasErrors('price')} ? 'form-group has-error' : 'form-group'">
+            <!-- <div class="form-group" th:class="${#fields.hasErrors('price')} ? 'form-group has-error' : 'form-group'">
                 <label class="col-sm-2 control-label">Price:</label>
                 <div class="col-sm-10">
                     <input type="number" min="0" max="5000" step="0.01" class="form-control" th:field="*{price}" th:errorclass="has-error"/>
@@ -64,7 +76,7 @@
                        </ul>
                     </span>
                 </div>
-            </div>
+            </div> -->
 
             <!-- <div class="form-group" th:class="${#fields.hasErrors('isActive')} ? 'form-group has-error' : 'form-group'">
                 <label class="col-sm-2 control-label">Active: :</label>
@@ -85,23 +97,23 @@
                 <option th:each="profile : ${allProfiles}" th:value="${profile}" th:text="${profile}">Profile</option>
             </select> -->
 
-            <div class="form-group">
+            <!-- <div class="form-group">
                 <h4>Categories</h4>
                 <table class="table table-striped">
                 <tr>
                     <th>Id</th>
                     <th>Name</th>
-                    <!-- <th>Parent</th> -->
+                    <th>Parent</th>
                 </tr>
                 <tr th:each="cat : ${allCategories}">
                     <td th:text="${cat.id}"></td>
                     <td th:text="${cat.name}"></td>
-                    <!-- <td th:text="${category.}"></td> -->
+                    <td th:text="${category.}"></td>
 
                 </tr>
             </table>
 
-            </div>
+            </div> -->
 
             <!-- <div class="form-group" th:class="${#fields.hasErrors('imageUrl')} ? 'form-group has-error' : 'form-group'">
                 <label class="col-sm-2 control-label">Image Url:</label>
