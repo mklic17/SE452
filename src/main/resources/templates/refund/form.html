@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Refund</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+
+     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"
+            th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
+
+    <link href="../../static/css/spring-core.css"
+          th:href="@{css/spring-core.css}" rel="stylesheet" media="screen"/>
+          <!-- Custom styles for this template -->
+    <link href="css/shop-homepage.css" rel="stylesheet">
+
+  </head>
+
+  <body>
+
+    <form class="form-horizontal" action="#" th:action="@{/createRefund}" th:object="${Refund}" method="POST">
+      <!-- form creating -->
+        <!-- input tags -->
+
+        <input type="text" name="Reason" placeholder="Reason" th:field="*{reason}" >
+        <input type="text" name="Other" placeholder="Other" th:field="*{other}">
+
+        <button type="submit" class="btn btn-default">Submit</button>
+
+      </form>
+
+    </body>
+</html>
