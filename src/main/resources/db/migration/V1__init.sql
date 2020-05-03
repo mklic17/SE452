@@ -37,6 +37,24 @@ CREATE TABLE Products_In_Category (
     FOREIGN KEY (category_ID) REFERENCES Category(ID)
 );
 
+ CREATE TABLE Orders (
+     ID VARCHAR(18),
+     datePlaced TIMESTAMP NOT NULL,
+     productID VARCHAR(18) NOT NULL,
+     productname VARCHAR(30),
+     price VARCHAR(30),
+
+     PRIMARY KEY (Id)
+ );
+ 
+ CREATE TABLE Refund (
+ 	RefundID SERIAL,
+ 	ordernumber VARCHAR(18),
+ 	ProductName VARChAR(30),
+ 	
+ 	PRIMARY KEY (RefundID)
+ 	);
+
 -- CREATE TABLE Customer (
 --     ID VARCHAR(18),
 --     firstName VARCHAR(20) NOT NULL,
