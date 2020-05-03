@@ -16,8 +16,11 @@ INSERT INTO Product(name, description, price) VALUES('Golf Clubs', 'These are go
 
 
 INSERT INTO Orders (ID, datePlaced, productID, productname, price)  VALUES ('000001', now(), 'ab', 'Baseball Bat', '50.00');
-INSERT INTO Orders (ID, datePlaced, productID, productname, price)  VALUES ('000002', now(), 'bb', 'Soccer Bat', '29.99');
+INSERT INTO Orders (ID, datePlaced, productID, productname, price)  VALUES ('000002', now(), 'bb', 'Soccer Ball', '29.99');
 INSERT INTO Orders (ID, datePlaced, productID, productname, price)  VALUES ('000003', now(), 'cb', 'Golf Clubs', '399.99');
+INSERT INTO Orders (ID, datePlaced, productID, productname, price)  VALUES ('000004', now(), 'db', 'Baseball Bat and Soccer Ball', '79.99');
+INSERT INTO Orders (ID, datePlaced, productID, productname, price)  VALUES ('000005', now(), 'eb', 'Golf Clubs', '399.99');
+
 
 -- INSERT INTO Product(Id, name, description, price, isActive) VALUES('111111', 'Baseball Bat', 'This is a bat used in the game of baseball', '50.00', true);
 -- INSERT INTO Product(Id, name, description, price, isActive) VALUES('222222', 'Soccer Ball', 'This is a ball used in the game of soccer', '29.99', true);
