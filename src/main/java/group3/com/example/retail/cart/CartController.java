@@ -8,7 +8,6 @@ import org.springframework.web.servlet.ModelAndView;
 @RequestMapping("cart")
 @Controller
 public class CartController {
-
 	// go to 'localhost/7996/cart/'
 	@GetMapping("/") // Return cart
 	public ModelAndView getCart() {
