@@ -15,9 +15,9 @@ public class Orders {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private String id;
+	private int id;
 	private Timestamp dateplaced;
 	private String productID;
 	private String productname;
-	private int price;
+	private double price;
 }

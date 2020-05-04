@@ -8,6 +8,7 @@ Orders(ID, customerID, datePlaced);
 OrderItems(Id, orderID, productID, productTotal);
 */
 
+
 CREATE TABLE Product (
     ID SERIAL,
     name VARCHAR(40) NOT NULL,
@@ -38,7 +39,7 @@ CREATE TABLE Products_In_Category (
 );
 
  CREATE TABLE Orders (
-     ID VARCHAR(18),
+     ID serial,
      datePlaced TIMESTAMP NOT NULL,
      productID VARCHAR(18) NOT NULL,
      productname VARCHAR(30),
