@@ -55,6 +55,15 @@ CREATE TABLE Products_In_Category (
  	
  	PRIMARY KEY (RefundID)
  	);
+ 	
+ CREATE TABLE REVIEW (
+ 	ID serial,
+ 	productid VARCHAR(18),
+ 	userid varchar(18),
+ 	comment varchar(50),
+ 	
+ 	primary key (id)
+ 	);
 
 -- CREATE TABLE Customer (
 --     ID VARCHAR(18),
