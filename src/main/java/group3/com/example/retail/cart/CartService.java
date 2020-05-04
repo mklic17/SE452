@@ -3,9 +3,13 @@ package group3.com.example.retail.cart;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import group3.com.example.retail.product.ProductRepository;
+import lombok.Data;
+
 import java.util.ArrayList;
 import java.util.List;
 
+@Data
 @Service
 public class CartService {
 
@@ -27,8 +31,8 @@ public class CartService {
         // get user's cart with userId
         Cart cart = cartRepository.findById(userId);
         // get the product with productId and its price
-        double productPrice = productRepository.findById(productId).getPrice();
-        cart.addToTotalPrice(productPrice);
+        // double productPrice = productRepository.findById(productId).getPrice();
+       // cart.addToTotalPrice(productPrice);
         cartRepository.save(cart);
     }
 
@@ -36,8 +40,8 @@ public class CartService {
         // get user's cart with userId
         Cart cart = cartRepository.findById(userId);
         // get the product with productId and its price
-        double productPrice = productRepository.findById(productId).getPrice();
-        cart.subtractFromTotalPrice(productPrice);
+        // double productPrice = productRepository.findById(productId).getPrice();
+        // cart.subtractFromTotalPrice(productPrice);
         cartRepository.save(cart);
     }
 }
