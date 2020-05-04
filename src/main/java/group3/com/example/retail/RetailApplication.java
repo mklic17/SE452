@@ -2,50 +2,29 @@ package group3.com.example.retail;
 
 
 import java.sql.Timestamp;
+import java.util.List;
 
+import group3.com.example.retail.cart.*;
+import group3.com.example.retail.catalog.Catalog;
+import group3.com.example.retail.product.Product;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
 
-import group3.com.example.retail.cart.Orders;
-import group3.com.example.retail.cart.OrdersRepo;
 import group3.com.example.retail.refund.Reason;
 import group3.com.example.retail.refund.Refund;
 import group3.com.example.retail.refund.RefundRepository;
 
 @SpringBootApplication
 public class RetailApplication {
-	
-	
+
+
 	 @Bean
-	    public CommandLineRunner returnItem(RefundRepository repository, OrdersRepo orderrepo) {
+	    public CommandLineRunner returnItem(CartRepository repository, OrdersRepo orderrepo) {
 	        return (args) -> {
-	            // save a review
-	        	
-	        	Refund refund = new Refund();
-	        	refund.setOrdernumber("1");
-	        	refund.setProductname("Soccer Ball");
-	        	Reason r = new Reason("joe", "did not like this ball");
-	        	
-	        	refund.setReason(r);
-	        	
-	        	repository.save(refund);
-	        	
-	        	orderrepo.deleteById(Integer.parseInt(refund.getOrdernumber()));
-	        	
-	        	///---------------Below used for testing only-------///
-	        	
-	        	Orders o = new Orders();
-	        	o.setDateplaced(new Timestamp(System.currentTimeMillis()));
-	        	o.setPrice(29.99);
-	        	o.setProductID("bb");
-	        	o.setProductname("Soccer Ball");
-	        	//o.setId(000002);
-	        	orderrepo.save(o);	      
-	        	
-	        
+
 	        };
 	    }
 

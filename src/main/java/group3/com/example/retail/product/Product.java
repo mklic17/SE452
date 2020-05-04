@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import group3.com.example.retail.cart.Cart;
 import group3.com.example.retail.category.Category;
 
 import javax.persistence.ManyToMany;
@@ -17,6 +18,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.JoinColumn;
 
 import lombok.Data;
+import lombok.Getter;
 
 
 @Data
@@ -47,7 +49,11 @@ public class Product {
     		inverseJoinColumns=@JoinColumn(name="categoryId")
     )
     private Set<Category> categoryAssignments;
-	
+
+    @ManyToMany
+    private Set<Cart> cartAssignments;
+
+    public double getPrice() { return this.price; }
 	
 	
 //	public Product(String name, String description, double price) {
