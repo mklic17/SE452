@@ -11,6 +11,8 @@ public class CartService {
 
     @Autowired
     private CartRepository cartRepository;
+    @Autowired
+    private ProductRepository productRepository;
 
     // Don't think this will be used outside of testing
     public List<Cart> getAllCarts() {
@@ -21,18 +23,21 @@ public class CartService {
         return cartList;
     }
 
-    //    public void addProductToCart(Product product, long userId) {
-    //        Cart cart = cartRepository.findById(userId);
-    //        // TODO: totalPrice += product.getPrice()
-    //
-    //        totalPrice += 1;
-    //        totalQuantity += 1;
-    //    }
-    //
-    //    public void removeProductFromCart(Product product) {
-    //        products.remove(product);
-    //        // TODO: totalPrice -= product.getPrice()
-    //        totalPrice -= 1;
-    //        totalQuantity -= 1;
-    //    }
+    public void addProductToCart(long productId, long userId) {
+        // get user's cart with userId
+        Cart cart = cartRepository.findById(userId);
+        // get the product with productId and its price
+        double productPrice = productRepository.findById(productId).getPrice();
+        cart.addToTotalPrice(productPrice);
+        cartRepository.save(cart);
+    }
+
+    public void removeProductFromCart(long productId, long userId) {
+        // get user's cart with userId
+        Cart cart = cartRepository.findById(userId);
+        // get the product with productId and its price
+        double productPrice = productRepository.findById(productId).getPrice();
+        cart.subtractFromTotalPrice(productPrice);
+        cartRepository.save(cart);
+    }
 }

@@ -1,11 +1,7 @@
 package group3.com.example.retail.cart;
 
-import group3.com.example.retail.order.Order;
 import lombok.Data;
-import lombok.ToString;
-
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.List;
 
 @Data
@@ -20,13 +16,15 @@ public class Cart {
     @Column(name="totalPrice")
     private double totalPrice;
 
-    /** For each Product in products, find the
-     *  product in Product table using the Id
-     */
-    @OneToMany(
-            mappedBy = "Id",
-            cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY
+    public void addToTotalPrice(double newPrice) { this.totalPrice += newPrice; }
+
+    public void subtractFromTotalPrice(double priceToSubtract) { this.totalPrice -= priceToSubtract; }
+
+    @ManyToMany
+    @JoinTable(
+            name="ProductsInCart",
+            joinColumns=@JoinColumn(name="cartId"),
+            inverseJoinColumns=@JoinColumn(name="productId")
     )
-    private final List<Product> products;
+    private final List<Product> productsInCart;
 }
