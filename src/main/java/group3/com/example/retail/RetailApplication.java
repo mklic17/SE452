@@ -33,8 +33,12 @@ public class RetailApplication {
 	        	
 	        	repository.save(refund);
 	        	
-	        	orderrepo.deleteById(Integer.parseInt(refund.getOrdernumber()));
+	        	if (orderrepo.existsById(1)==false) {
 	        	
+	        		orderrepo.deleteById(Integer.parseInt(refund.getRefundid())-1);
+	        	}else {
+	        		orderrepo.deleteById(Integer.parseInt(refund.getOrdernumber()));
+	        	}
 	        	///---------------Below used for testing only-------///
 	        	
 	        	Orders o = new Orders();
