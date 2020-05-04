@@ -3,6 +3,9 @@ package group3.com.example.retail.cart;
 import group3.com.example.retail.product.Product;
 import lombok.Data;
 import javax.persistence.*;
+
+import group3.com.example.retail.product.Product;
+
 import java.util.List;
 
 @Data
