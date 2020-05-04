@@ -1,5 +1,7 @@
 package group3.com.example.retail.cart;
 
+import group3.com.example.retail.product.Product;
+import group3.com.example.retail.product.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
