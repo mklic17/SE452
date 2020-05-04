@@ -14,9 +14,26 @@ import group3.com.example.retail.cart.OrdersRepo;
 import group3.com.example.retail.refund.Reason;
 import group3.com.example.retail.refund.Refund;
 import group3.com.example.retail.refund.RefundRepository;
+import group3.com.example.retail.review.Review;
+import group3.com.example.retail.review.ReviewRepo;
 
 @SpringBootApplication
 public class RetailApplication {
+	
+	@Bean
+		public CommandLineRunner writeReview(ReviewRepo reviewRepo) {
+		return (args) -> {
+			
+			Review review = new Review();
+			review.setProductid("34343");
+			review.setUserID("45");
+			review.setComment("I Hate This Product");
+			
+			reviewRepo.save(review);
+			
+		};
+		
+	}
 	
 	
 	 @Bean
