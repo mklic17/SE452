@@ -47,30 +47,30 @@ CREATE TABLE Products_In_Category (
 
      PRIMARY KEY (Id)
  );
- 
+
  CREATE TABLE Refund (
  	RefundID SERIAL,
  	ordernumber VARCHAR(18),
  	ProductName VARChAR(30),
- 	
+
  	PRIMARY KEY (RefundID)
  	);
- 	
- CREATE TABLE REVIEW (
+
+ CREATE TABLE Review (
  	ID serial,
  	productid VARCHAR(18),
  	userid varchar(18),
  	comment varchar(50),
- 	
+
  	primary key (id)
  	);
- 	
- CREATE TABLE customer (
+
+ CREATE TABLE Customer (
  	ID VARCHAR(18),
 	firstName VARCHAR(20) NOT NULL,
 	lastName VARCHAR(20) NOT NULL,
 	email VARCHAR(50),
-	
+
 	CONSTRAINT uniqueEmail UNIQUE(email),
 	PRIMARY KEY (Id)
 );

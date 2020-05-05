@@ -15,15 +15,15 @@ public class Application implements InitializingBean {
 	
     private static final Logger logger = LoggerFactory.getLogger(Application.class);
 	
-    @Autowired
-   	private CategoryService catService;
-	
+//    @Autowired
+//   	private CategoryService catService;
+
 	public void afterPropertiesSet() {
 	      // do some initialization work
 		
-		logger.info("initializing Catelog");
-		Catalog storefront = Catalog.getCatalog();
-		
+//		logger.info("initializing Catelog");
+//		Catalog storefront = Catalog.getCatalog();
+//		
 		
 	}
 	
