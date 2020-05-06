@@ -26,7 +26,7 @@ public class ProductController {
 	private ProductService productService;
 	
 	
-	@GetMapping("/") // Return all Products
+	@GetMapping({"", "/"}) // Return all Products
 	public ModelAndView getAllProducts() { 
 		ModelAndView mnv = new ModelAndView();
 		mnv.setViewName("product/list");

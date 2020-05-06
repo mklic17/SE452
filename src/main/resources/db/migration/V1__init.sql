@@ -14,7 +14,7 @@ CREATE TABLE Product (
     name VARCHAR(40) NOT NULL,
     description VARCHAR(1000),
     price VARCHAR(18),
-    isActive BOOLEAN DEFAULT true,
+    -- isActive BOOLEAN DEFAULT true,
 
     PRIMARY KEY (Id)
 );
@@ -74,6 +74,8 @@ CREATE TABLE Products_In_Category (
 	CONSTRAINT uniqueEmail UNIQUE(email),
 	PRIMARY KEY (Id)
 );
+
+
 -- CREATE TABLE Customer (
 --     ID VARCHAR(18),
 --     firstName VARCHAR(20) NOT NULL,
