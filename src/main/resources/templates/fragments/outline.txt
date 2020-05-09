@@ -1,0 +1,7 @@
+Use this outline to specify summarize the fragments and where they should be used
+
+
+1) eCommerce--header : Holds all of the bootstrap, Use insert so you can still add a title to your page
+
+
+2) navbar: Holds the navigation of the site. Will need to include things such as Current user (My Account), Cart, and any static links we want to include

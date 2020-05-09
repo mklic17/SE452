@@ -8,60 +8,90 @@ import java.util.Map;
 import java.util.TreeSet;
 
 import group3.com.example.retail.category.Category;
-import group3.com.example.retail.category.CategoryFactory;
+import group3.com.example.retail.product.Product;
 
 
 // No Lombok, No Database, created at the start of the program and when maunally forced to rebuild
 public class Catalog {
 
-	private static Catalog storefrontCatalog = null; // singleton Constructor
-	private static Map<Long, Category> categoryMap;
-	private static Category head;
 
-
-//	// Public way to create catalog, Singleton Allows only 1 to be constructed
-	public static Catalog getCatalog(List<Category> list) {
+	
+	private static Catalog storefrontCatalog = null; // singleton Constructor	
+	
+	private Map<Long, ArrayList<Long>> catalogMap = null;      // Category ID (parent) --> List<Category Id's>  (children)
+	private Map<Long, Category> categoryMap = null;            // Category ID --> Category 
+	private Map<Long, Product> productMap = null;              // Product ID --> Product
+	
+															   // Product(
+	
+	public static Catalog getCatalog(List<Product> prodList, List<Category> catList) {
 		if (storefrontCatalog == null) {
-			storefrontCatalog = new Catalog(list);
+			storefrontCatalog = new Catalog(prodList, catList);
 		}
 		return storefrontCatalog;
 	}
 	
-	
-	//
 	public static Catalog getCatalog() {
-		if (storefrontCatalog == null) {
-			storefrontCatalog = new Catalog(null);
-		}
 		return storefrontCatalog;
+	}
+	
+	
+	public static void rebuildCatalog(List<Product> prodList, List<Category> catList) {
+		storefrontCatalog = null;
+		storefrontCatalog = new Catalog(prodList, catList);
 	}
 	
 	
 	// private constructor
-	private Catalog(List<Category> list) {
+	private Catalog(List<Product> prodList, List<Category> catList) {
+		
+//		categoryFactory = CategoryFactory.getCategoryFactory();
+//		productFactory = new ProductFactory(); 
+		
+		catalogMap = new HashMap<Long, ArrayList<Long>>();  
 		categoryMap = new HashMap<Long, Category>();
+		productMap = new HashMap<Long, Product>();
 		
-		Catalog.head = CategoryFactory.createCategory("main", Long.valueOf(-1)); // set main, default head
-		
-		if(list != null) {
-			for(Category cat : list) {
-				System.out.println("Building Catalog " + cat.getName());
-	            Long parentId = cat.getParent();
-	            
-	            if (parentId == 0 || parentId == null) {
-	            	Category temp = CategoryFactory.createCategory(cat.getName(), head.getId());
-	                categoryMap.put(temp.getId(), temp);
-	            } 
-	            else {
-	                categoryMap.put(cat.getId(), cat);
-	            }
-	        }
-//			buildTheCatalogNavigation(head);
+		// initalize productMap
+		for(Product prod : prodList) {
+			productMap.put(prod.getId(), prod);
 		}
+		
+		// initialize categoryMap
+		for(Category cat : catList) {
+			categoryMap.put(cat.getId(), cat);
+			
+			// initalize Catalog
+			if (catalogMap.containsKey(cat.getId())) { // if the category is in the catalog append to the list
+				List<Long> liCat = catalogMap.get(cat.getId());
+				liCat.add(cat.getId());
+			} else { 
+				catalogMap.put(cat.getId(), new List<long>());
+			}
+		}
+		
+		// initialize CatalogMap
+		//
+		
 	}
 	
 	public Collection<Category> getAllStoreCategories() {
 		return categoryMap.values();
+	}
+	
+	public Collection<Product> getAllProducts() {
+		return productMap.values();
+	}
+	
+	
+	public List<Product> getAllProductsInCategory(String categoryId) {
+		// check to see if there is products in the Category
+		List <Product> productList = new ArrayList<Product>();
+		Category cat = categoryMap.get(categoryId);
+		for(Long prodId : cat.getProductAssignments()) {
+			productList.add(productMap.get(prodId));
+		}
+		return productList;
 	}
 	
 

@@ -23,7 +23,7 @@ CREATE TABLE Product (
 CREATE TABLE Category (
     ID SERIAL,
     name VARCHAR(40) NOT NULL,
-    parent VARCHAR(20),
+    parent VARCHAR(20), -- parent or child?
 
     PRIMARY KEY (Id)
 );

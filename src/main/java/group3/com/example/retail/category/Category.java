@@ -38,8 +38,8 @@ public class Category {
 	@Column(name="parent")
 	private Long parent;
 
-	@ManyToMany
-    Set<Product> productAssignments;
+//	@ManyToMany
+//    Set<Long> productAssignments;
 
 	
 	public Category(String name, long parent) {
