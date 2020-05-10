@@ -18,7 +18,7 @@ public class Catalog {
 	
 	private static Catalog storefrontCatalog = null; // singleton Constructor	
 	
-	private Map<Long, ArrayList<Long>> catalogMap = null;      // Category ID (parent) --> List<Category Id's>  (children)
+	private Map<Long, List<Long>> catalogMap = null;      // Category ID (parent) --> List<Category Id's>  (children)
 	private Map<Long, Category> categoryMap = null;            // Category ID --> Category 
 	private Map<Long, Product> productMap = null;              // Product ID --> Product
 	
@@ -48,7 +48,7 @@ public class Catalog {
 //		categoryFactory = CategoryFactory.getCategoryFactory();
 //		productFactory = new ProductFactory(); 
 		
-		catalogMap = new HashMap<Long, ArrayList<Long>>();  
+		catalogMap = new HashMap<Long, List<Long>>();  
 		categoryMap = new HashMap<Long, Category>();
 		productMap = new HashMap<Long, Product>();
 		
@@ -58,20 +58,23 @@ public class Catalog {
 		}
 		
 		// initialize categoryMap
-		for(Category cat : catList) {
-			categoryMap.put(cat.getId(), cat);
+		for(Category categ : catList) {
 			
-			// initalize Catalog
-			if (catalogMap.containsKey(cat.getId())) { // if the category is in the catalog append to the list
-				List<Long> liCat = catalogMap.get(cat.getId());
-				liCat.add(cat.getId());
+			long categoryID = categ.getId();
+			categoryMap.put(categoryID, categ);
+	
+//			// initalize CatalogMap
+			if (catalogMap.containsKey(categoryID)) { // if the category is in the catalog append to the list
+				List<Long> liCat = catalogMap.get(categoryID);
+				liCat.add(categoryID);
+				catalogMap.get(categoryID).add(categoryID);
 			} else { 
-				catalogMap.put(cat.getId(), new List<long>());
+//				ArrayList<long> catIds = new ArrayList<long>();
+//				catalogMap.put(categoryID, new ArrayList<long>());
 			}
 		}
 		
-		// initialize CatalogMap
-		//
+
 		
 	}
 	
@@ -88,9 +91,10 @@ public class Catalog {
 		// check to see if there is products in the Category
 		List <Product> productList = new ArrayList<Product>();
 		Category cat = categoryMap.get(categoryId);
-		for(Long prodId : cat.getProductAssignments()) {
-			productList.add(productMap.get(prodId));
-		}
+		
+//		for(Category prodId : cat.getCategoryAssignments()) {
+//			productList.add(productMap.get(prodId));
+//		}
 		return productList;
 	}
 	

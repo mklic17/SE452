@@ -2,11 +2,13 @@ package group3.com.example.retail.product;
 
 import java.io.Serializable;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -31,10 +33,8 @@ import com.vladmihalcea.hibernate.type.basic.PostgreSQLHStoreType;
 @Data
 @Entity
 @Table(name="Product")
-//@TypeDefs({
-//	@TypeDef(name = "hstore", typeClass = PostgreSQLHStoreType.class)
-//})
-public class Product {
+
+public class Product implements Serializable {
 	
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -43,30 +43,24 @@ public class Product {
     @Column(name="name")
     private String name;
     
-    @Column(name="description")
-    private String description;
-    
     @Column(name="price")
     private double price;
     
-//    @Column(name="shortsummary")
-//    private double shortsummary;
-     
-//    @Column(name="")
-//    private double ;
+    
+    @Column(name="summary")
+    private String summary;
     
     
-    @ManyToMany
-    @JoinTable(
-    		name="ProductsInCategory",
-    		joinColumns=@JoinColumn(name="productId"),
-    		inverseJoinColumns=@JoinColumn(name="categoryId")
-    )
-    private Set<Category> categoryAssignments;
+    @Column(name="description")
+    private String description;
     
-//    @Type(type = "hstore")
-//    @Column(columnDefinition = "hstore")
-//    private Map<String, String> image = new HashMap<String, String>(); // ID --> image URL
+    
+    @Column(name="image")
+    private String image;
+    
+ 
+    @ManyToMany (mappedBy = "products", fetch = FetchType.LAZY)
+    private Set<Category> categoryAssignments = new HashSet<Category>();
     
 
 //    @ManyToMany

@@ -1,12 +1,14 @@
 package group3.com.example.retail.category;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.JoinColumn;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
@@ -25,7 +27,7 @@ import lombok.ToString;
 @Data
 @Entity
 @Table(name="Category")
-public class Category {
+public class Category implements Serializable{
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -38,8 +40,22 @@ public class Category {
 	@Column(name="parent")
 	private Long parent;
 
+
+	@ManyToMany
+	@JoinTable(
+			name = "Products_In_Category",
+			joinColumns = {
+					@JoinColumn( name = "produt_Id", referencedColumnName = "Id")
+			}, 
+			inverseJoinColumns = {
+					@JoinColumn( name = "category_Id", referencedColumnName = "Id")
+			}
+	)
+	private Set<Product> products = new HashSet<Product>();
+
+	
 //	@ManyToMany
-//    Set<Long> productAssignments;
+//    Set<Product> productAssignments 
 
 	
 	public Category(String name, long parent) {

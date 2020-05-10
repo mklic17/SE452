@@ -12,8 +12,10 @@ OrderItems(Id, orderID, productID, productTotal);
 CREATE TABLE Product (
     ID SERIAL,
     name VARCHAR(40) NOT NULL,
-    description VARCHAR(1000),
     price VARCHAR(18),
+    summary Varchar(200),
+    description VARCHAR(1000),
+    image varchar(200),
     -- isActive BOOLEAN DEFAULT true,
 
     PRIMARY KEY (Id)
