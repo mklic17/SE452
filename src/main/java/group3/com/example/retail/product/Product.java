@@ -66,15 +66,7 @@ public class Product implements Serializable {
 //    @ManyToMany
 //    private Set<Cart> cartAssignments;
 
-//    public double getPrice() { return this.price; }
 	
 	
-//	public Product(String name, String description, double price) {
-//		_name = name;
-//		_description = description;
-//		_price = price;
-//	}
-
-    //
     
 }

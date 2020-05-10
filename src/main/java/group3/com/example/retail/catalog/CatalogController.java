@@ -37,7 +37,7 @@ public class CatalogController {
 		mnv.addObject("products", catalog.getAllProductsInCategory(catalogName));
 		return mnv;
 	}
-	
+	//
 
 	
 	private static List<Product> getAllProductsInCategory(String categoryId) {
