@@ -5,3 +5,6 @@ Use this outline to specify summarize the fragments and where they should be use
 
 
 2) navbar: Holds the navigation of the site. Will need to include things such as Current user (My Account), Cart, and any static links we want to include
+
+
+3) catalog: Holds the categories that are defined on the site. Include on things such as home and category pages

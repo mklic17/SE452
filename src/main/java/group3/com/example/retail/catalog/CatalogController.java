@@ -25,16 +25,18 @@ public class CatalogController {
 	public ModelAndView home() {
 		ModelAndView mnv = new ModelAndView();
 		mnv.setViewName("other/home");
+		mnv.addObject("categorys", catalog.getAllStoreCategories());
 		mnv.addObject("products", catalog.getAllProducts() );
 		return mnv;
 	}
 	
 	
-	@GetMapping({"/{catalogName}", "/{catalogName}/"}) // Return all Products in Category
-	public ModelAndView getCategory(@PathVariable String catalogName) {
+	@GetMapping({"/{categoryName}", "/{categoryName}/"}) // Return all Products in Category
+	public ModelAndView getCategory(@PathVariable String categoryName) {
 		ModelAndView mnv = new ModelAndView();
 		mnv.setViewName("other/home");
-		mnv.addObject("products", catalog.getAllProductsInCategory(catalogName));
+//		mnv.addObject("categorys", catalog.getAllProductsInCategory(categoryName));
+		mnv.addObject("products", catalog.getAllProductsInCategory(categoryName));
 		return mnv;
 	}
 	//
@@ -49,4 +51,3 @@ public class CatalogController {
 	
 
 }
-//
