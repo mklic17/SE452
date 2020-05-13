@@ -10,14 +10,16 @@ import java.util.List;
 
 @Data
 @Entity
-@Table(name="cart")
 public class Cart {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long Id;
+    private long cartid;
 
-    @Column(name="totalPrice")
+    @Column(name="customerid")
+    private String customerid;
+
+    @Column(name="totalprice")
     private double totalPrice;
 
     public void addToTotalPrice(double newPrice) { this.totalPrice += newPrice; }
@@ -26,11 +28,11 @@ public class Cart {
 
     public double getTotalPrice() { return this.totalPrice; }
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name="ProductsInCart",
-            joinColumns=@JoinColumn(name="cartId"),
-            inverseJoinColumns=@JoinColumn(name="productId")
+            joinColumns=@JoinColumn(name="cartid"),
+            inverseJoinColumns=@JoinColumn(name="id")
     )
     private List<Product> productsInCart;
 }

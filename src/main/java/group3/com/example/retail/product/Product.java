@@ -3,19 +3,10 @@ package group3.com.example.retail.product;
 import java.io.Serializable;
 import java.util.Set;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 import group3.com.example.retail.cart.Cart;
 import group3.com.example.retail.category.Category;
-
-import javax.persistence.ManyToMany;
-import javax.persistence.JoinTable;
-import javax.persistence.JoinColumn;
 
 import lombok.Data;
 import lombok.Getter;
@@ -50,7 +41,7 @@ public class Product {
     )
     private Set<Category> categoryAssignments;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     private Set<Cart> cartAssignments;
 
     public double getPrice() { return this.price; }

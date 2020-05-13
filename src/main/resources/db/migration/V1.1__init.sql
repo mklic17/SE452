@@ -8,7 +8,6 @@ Orders(ID, customerID, datePlaced);
 OrderItems(Id, orderID, productID, productTotal);
 */
 
-
 CREATE TABLE Product (
     ID SERIAL,
     name VARCHAR(40) NOT NULL,
@@ -47,60 +46,47 @@ CREATE TABLE Products_In_Category (
 
      PRIMARY KEY (Id)
  );
- 
+
  CREATE TABLE Refund (
  	RefundID SERIAL,
  	ordernumber VARCHAR(18),
  	ProductName VARChAR(30),
- 	
+
  	PRIMARY KEY (RefundID)
  	);
- 	
+
  CREATE TABLE REVIEW (
  	ID serial,
  	productid VARCHAR(18),
  	userid varchar(18),
  	comment varchar(50),
- 	
+
  	primary key (id)
  	);
- 	
+
  CREATE TABLE customer (
  	ID VARCHAR(18),
 	firstName VARCHAR(20) NOT NULL,
 	lastName VARCHAR(20) NOT NULL,
 	email VARCHAR(50),
-	
+
 	CONSTRAINT uniqueEmail UNIQUE(email),
 	PRIMARY KEY (Id)
 );
--- CREATE TABLE Customer (
---     ID VARCHAR(18),
---     firstName VARCHAR(20) NOT NULL,
---     lastName VARCHAR(20) NOT NULL,
---     email VARCHAR(50),
---
---     CONSTRAINT uniqueEmail UNIQUE(email),
---     PRIMARY KEY (Id)
--- );
---
--- CREATE TABLE Orders (
---     ID VARCHAR(18),
---     customerID VARCHAR(18) NOT NULL,
---     datePlaced TIMESTAMP NOT NULL,
---     status varchar(20),
---
---     FOREIGN KEY (customerID) REFERENCES Customer(ID),
---     PRIMARY KEY (Id)
--- );
---
--- CREATE TABLE OrderItems (
---     ID varchar(18),
---     orderId varchar(18) NOT NULL,
---     productID varchar(18) NOT NULL,
---     productTotal money,
---
---     FOREIGN KEY (orderID) REFERENCES Orders(ID),
---     FOREIGN KEY (productID) REFERENCES Product(ID),
---     PRIMARY KEY (ID)
--- );
+
+ CREATE TABLE cart (
+    cartid serial,
+    customerid VARCHAR(18),
+    totalprice VARCHAR(18),
+
+    PRIMARY KEY (cartid),
+    FOREIGN KEY (customerid) REFERENCES customer(ID)
+);
+
+ CREATE TABLE Products_In_Cart (
+    id serial,
+    productID VARCHAR(18),
+
+    PRIMARY KEY (id),
+    FOREIGN KEY (id) REFERENCES cart(cartid)
+);

@@ -27,10 +27,8 @@ INSERT INTO Orders (ID, datePlaced, productID, productname, price)  VALUES ('544
 -- INSERT INTO Product(Id, name, description, price, isActive) VALUES('333333', 'Basketball Shooting Sleeve', 'Sleeve that goes on your arm to aid in the Basketball shooting form', '19.99', true);
 -- INSERT INTO Product(Id, name, description, price, isActive) VALUES('444444', 'Golf Clubs', 'These are golf Clubs used to play golf', '399.99', true);
 
-
 --- Category
 -- DECLARE @sportsID AS VARCHAR;
-
 
 INSERT INTO Category(name) VALUES('Sports');
 -- SET @sportsID = (SELECT ID FROM Category WHERE name = 'Sports');
@@ -52,21 +50,13 @@ INSERT INTO Products_In_Category(product_ID, category_ID) VALUES((SELECT ID FROM
 INSERT INTO Customer (ID, firstName, lastName, email) VALUES ('aaaaa', 'Michael', 'Scott',  'mscott@dundermifflin.com');
 INSERT INTO Customer (ID, firstName, lastName, email) VALUES ('aaaab', 'Dwight', 'Schrute',  'dschture@dundermifflin.com');
 INSERT INTO Customer (ID, firstName, lastName, email) VALUES ('aaaac', 'Jim', 'Halpert',  'jhalpert@dundermifflin.com');
---
---
--- -- Order and OrderItems
--- INSERT INTO Orders (ID, customerID, datePlaced)  VALUES ('000001', 'aaaaa', now());
--- INSERT INTO OrderItems (Id, orderID, productID, productTotal) VALUES ('aiodsfjsd', '000001', '000004', 399.99);
--- INSERT INTO OrderItems (Id, orderID, productID, productTotal) VALUES ('flkflasjf', '000001', '000002', 29.99);
--- INSERT INTO OrderItems (Id, orderID, productID, productTotal) VALUES ('gadsgd', '000001', '000001', 50.00);
---
--- INSERT INTO Orders (ID, customerID, datePlaced)  VALUES ('000002', 'aaaaa', now());
--- INSERT INTO OrderItems (Id, orderID, productID, productTotal) VALUES ('afhfdd', '000002', '000003', 19.99);
--- INSERT INTO OrderItems (Id, orderID, productID, productTotal) VALUES ('hererhe', '000002', '000004', 399.99);
---
--- INSERT INTO Orders (ID, customerID, datePlaced)  VALUES ('000003', 'aaaab', now());
--- INSERT INTO OrderItems (Id, orderID, productID, productTotal) VALUES ('gassgsd', '000003', '000003', 19.99);
--- INSERT INTO OrderItems (Id, orderID, productID, productTotal) VALUES ('hererhe', '000003', '000001', 50.00);
---
--- INSERT INTO Orders (ID, customerID, datePlaced)  VALUES ('000004', 'aaaac', now());
--- INSERT INTO OrderItems (Id, orderID, productID, productTotal) VALUES ('dsglkdsg', '000004', '000002', 29.99);
+
+-- Cart
+INSERT INTO Cart (cartid, customerid, totalPrice) VALUES (1, 'aaaaa', '0');
+
+-- ProductsInCart
+INSERT INTO Products_In_Cart (id, productID) VALUES (1, '1');
+
+
+
+
