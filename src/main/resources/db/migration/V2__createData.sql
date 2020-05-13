@@ -52,10 +52,11 @@ INSERT INTO Customer (ID, firstName, lastName, email) VALUES ('aaaab', 'Dwight',
 INSERT INTO Customer (ID, firstName, lastName, email) VALUES ('aaaac', 'Jim', 'Halpert',  'jhalpert@dundermifflin.com');
 
 -- Cart
-INSERT INTO Cart (cartid, customerid, totalPrice) VALUES (1, 'aaaaa', '0');
+INSERT INTO Cart (cart_ID, customerid, totalPrice) VALUES (1, 'aaaaa', '0');
 
 -- ProductsInCart
-INSERT INTO Products_In_Cart (id, productID) VALUES (1, '1');
+-- Add 'Soccer ball' Product to user 'aaaaa' cart
+INSERT INTO Products_In_Cart (cart_id, product_ID) VALUES ((SELECT cart_ID FROM Cart WHERE customerid = 'aaaaa'), (SELECT ID FROM Product WHERE Name = 'Soccer Ball'));
 
 
 

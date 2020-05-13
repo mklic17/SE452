@@ -74,19 +74,21 @@ CREATE TABLE Products_In_Category (
 	PRIMARY KEY (Id)
 );
 
- CREATE TABLE cart (
-    cartid serial,
+ CREATE TABLE Cart (
+    cart_ID serial,
     customerid VARCHAR(18),
     totalprice VARCHAR(18),
 
-    PRIMARY KEY (cartid),
+    PRIMARY KEY (cart_ID),
     FOREIGN KEY (customerid) REFERENCES customer(ID)
 );
 
  CREATE TABLE Products_In_Cart (
     id serial,
-    productID VARCHAR(18),
+    cart_ID serial,
+    product_ID serial,
 
     PRIMARY KEY (id),
-    FOREIGN KEY (id) REFERENCES cart(cartid)
+    FOREIGN KEY (cart_ID) REFERENCES Cart(cart_ID),
+    FOREIGN KEY (product_ID) REFERENCES Product(ID)
 );

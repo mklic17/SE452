@@ -11,7 +11,6 @@ import group3.com.example.retail.category.Category;
 import lombok.Data;
 import lombok.Getter;
 
-
 @Data
 @Entity
 @Table(name="Product")

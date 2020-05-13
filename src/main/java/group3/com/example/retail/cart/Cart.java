@@ -14,7 +14,8 @@ public class Cart {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long cartid;
+    @Column(name="cart_ID")
+    private long cartID;
 
     @Column(name="customerid")
     private String customerid;
@@ -31,8 +32,8 @@ public class Cart {
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name="ProductsInCart",
-            joinColumns=@JoinColumn(name="cartid"),
-            inverseJoinColumns=@JoinColumn(name="id")
+            joinColumns=@JoinColumn(name="cart_ID"),
+            inverseJoinColumns=@JoinColumn(name="product_ID")
     )
     private List<Product> productsInCart;
 }
