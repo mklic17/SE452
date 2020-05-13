@@ -14,7 +14,7 @@ CREATE TABLE Product (
     name VARCHAR(40) NOT NULL,
     price VARCHAR(18),
     summary Varchar(200),
-    description VARCHAR(1000),
+    description VARCHAR(10000),
     image varchar(200),
     -- isActive BOOLEAN DEFAULT true,
 

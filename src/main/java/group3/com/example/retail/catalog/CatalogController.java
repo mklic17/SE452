@@ -46,5 +46,5 @@ public class CatalogController {
 		return catalog.getAllProductsInCategory(categoryId);
 	}
 	
-//
+
 }

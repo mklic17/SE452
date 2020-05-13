@@ -4,17 +4,40 @@
   touch-action: none;
 }
 
-#headingSpacing {
+.spacing {
   width: 100vw;
   height: 8vh;
 }
 
 #content {
   width: 100vw;
-  height: 80vh;
+  height: 75vh;
 }
 
 #footer {
-  height: 5vh;
   width: 100vw;
+  height: 5vh;
+}
+
+#image {
+  min-width: 400px;
+  min-height: 400px;
+
+  width: 30vw;
+  height: 30vh;
+
+
+}
+
+#addToCart {
+  float: right;
+}
+
+#tableForSpacing {
+  width: 100%;
+}
+
+#tableForSpacing td {
+  width: 50%;
+  text-align: center;
 }
