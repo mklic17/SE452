@@ -1,15 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
 
-    <head th:fragment="common-catalog">
-        <meta charset="UTF-8" />
+    <!-- header fragment -->
+    <head th:insert="fragments/header :: header">
 
-        <!-- Bootstrap CSS -->
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" crossorigin="anonymous">
 
-    </head>
     <body>
-
         <div class="col-lg-3" th:fragment="catalog">
           <h1 class="my-4">eCommerce</h1>
           <div class="list-group" th:each="category : ${categorys}">
