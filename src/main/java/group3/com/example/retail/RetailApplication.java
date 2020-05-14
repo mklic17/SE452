@@ -64,14 +64,15 @@ public class RetailApplication {
 //		};
 //	}
 
-//	@Bean
-//	public CommandLineRunner findAllCarts(CartRepository cartRepo, ProductRepository productRepo) {
-//		return (args) -> {
-//			cartRepo.findAll().forEach((cart) -> {
-//				System.out.println(cart.toString());
-//			});
-//		};
-//	}
+	@Bean
+	public CommandLineRunner demoCart(CartRepository cartRepo, ProductRepository productRepo) {
+		return (args) -> {
+			// Get all Carts
+			cartRepo.findAll().forEach((cart) -> { System.out.println(cart.toString()); });
+
+			// Add item to a Cart
+		};
+	}
 
 	public static void main(String[] args) {
 		SpringApplication.run(RetailApplication.class, args);

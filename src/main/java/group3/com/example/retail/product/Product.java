@@ -32,15 +32,15 @@ public class Product {
 //    @Column(name="isActive")
 //    private String isActive;
     
-    @ManyToMany
-    @JoinTable(
-    		name="ProductsInCategory",
-    		joinColumns=@JoinColumn(name="productId"),
-    		inverseJoinColumns=@JoinColumn(name="categoryId")
-    )
-    private Set<Category> categoryAssignments;
+//    @ManyToMany
+//    @JoinTable(
+//    		name="ProductsInCategory",
+//    		joinColumns=@JoinColumn(name="productId"),
+//    		inverseJoinColumns=@JoinColumn(name="categoryId")
+//    )
+//    private Set<Category> categoryAssignments;
 
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(mappedBy = "cartProducts", fetch = FetchType.EAGER)
     private Set<Cart> cartAssignments;
 
     public double getPrice() { return this.price; }
