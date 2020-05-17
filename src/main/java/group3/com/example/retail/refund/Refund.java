@@ -28,7 +28,7 @@ public class Refund {
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private String refundid;
+	private Long refundid;
 	private String ordernumber; 
 	private String productname;
 	
