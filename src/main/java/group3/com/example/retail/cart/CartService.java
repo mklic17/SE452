@@ -29,21 +29,21 @@ public class CartService {
         return cartList;
     }
 
-    public void addProductToCart(long productId, long userId) {
+    public void addProductToCart(long productId, String userId) {
         // get user's cart with userId
-        Cart cart = cartRepository.findById(userId);
+//        Cart cart = cartRepository.findById(userId);
         // get the product with productId and its price
         // double productPrice = productRepository.findById(productId).getPrice();
        // cart.addToTotalPrice(productPrice);
-        cartRepository.save(cart);
+//        cartRepository.save(cart);
     }
 
-    public void removeProductFromCart(long productId, long userId) {
+    public void removeProductFromCart(long productId, String userId) {
         // get user's cart with userId
-        Cart cart = cartRepository.findById(userId);
+//        Cart cart = cartRepository.findById(userId);
         // get the product with productId and its price
         // double productPrice = productRepository.findById(productId).getPrice();
         // cart.subtractFromTotalPrice(productPrice);
-        cartRepository.save(cart);
+//        cartRepository.save(cart);
     }
 }

@@ -14,10 +14,8 @@ INSERT INTO Product(name, description, summary, price, image) VALUES('Soccer Bal
 INSERT INTO Product(name, description, summary, price, image) VALUES('Basketball Shooting Sleeve', 'Sleeve that goes on your arm to aid in the Basketball shooting form', 'Womens basketball', '19.99', 'https://dks.scene7.com/is/image/GolfGalaxy/16WILUJTVLTNXXXXXBKB?qlt=70&wid=600&fmt=pjpeg');
 INSERT INTO Product(name, description, summary, price, image) VALUES('Golf Clubs', 'These are golf Clubs used to play golf', '13 club set', '399.99', 'https://images-na.ssl-images-amazon.com/images/I/71uXuqys2NL._AC_SX425_.jpg');
 
-
 --- Category
 -- DECLARE @sportsID AS VARCHAR;
-
 
 INSERT INTO Category(name) VALUES('Sports');
 -- SET @sportsID = (SELECT ID FROM Category WHERE name = 'Sports');
@@ -39,6 +37,10 @@ INSERT INTO Products_In_Category(product_ID, category_ID) VALUES((SELECT ID FROM
 INSERT INTO Customer (ID, firstName, lastName, email) VALUES ('aaaaa', 'Michael', 'Scott',  'mscott@dundermifflin.com');
 INSERT INTO Customer (ID, firstName, lastName, email) VALUES ('aaaab', 'Dwight', 'Schrute',  'dschture@dundermifflin.com');
 INSERT INTO Customer (ID, firstName, lastName, email) VALUES ('aaaac', 'Jim', 'Halpert',  'jhalpert@dundermifflin.com');
+
+
+-- Cart
+INSERT INTO Cart (customer_ID, total_price) VALUES ('aaaaa', '0');
 
 
 
@@ -66,3 +68,4 @@ INSERT INTO Orders (ID, datePlaced, productID, productname, price)  VALUES ('544
 --
 -- INSERT INTO Orders (ID, customerID, datePlaced)  VALUES ('000004', 'aaaac', now());
 -- INSERT INTO OrderItems (Id, orderID, productID, productTotal) VALUES ('dsglkdsg', '000004', '000002', 29.99);
+

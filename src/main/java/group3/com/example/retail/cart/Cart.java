@@ -5,19 +5,21 @@ import lombok.Data;
 import javax.persistence.*;
 
 import group3.com.example.retail.product.Product;
-
-import java.util.List;
+import java.util.Set;
 
 @Data
 @Entity
-@Table(name="cart")
 public class Cart {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long Id;
+    @Column(name="cart_ID")
+    private long cartID;
 
-    @Column(name="totalPrice")
+    @Column(name="customer_ID")
+    private String customerID;
+
+    @Column(name="total_price")
     private double totalPrice;
 
     public void addToTotalPrice(double newPrice) { this.totalPrice += newPrice; }
@@ -26,11 +28,12 @@ public class Cart {
 
     public double getTotalPrice() { return this.totalPrice; }
 
-    @ManyToMany
+    // Cart is the owner in this ManyToMany relationship
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
-            name="ProductsInCart",
-            joinColumns=@JoinColumn(name="cartId"),
-            inverseJoinColumns=@JoinColumn(name="productId")
+            name="Cart_Products",
+            joinColumns= @JoinColumn(name="cart_ID") ,
+            inverseJoinColumns=@JoinColumn(name="product_ID")
     )
-    private List<Product> productsInCart;
+    private Set<Product> cartProducts;
 }

@@ -8,7 +8,6 @@ Orders(ID, customerID, datePlaced);
 OrderItems(Id, orderID, productID, productTotal);
 */
 
-
 CREATE TABLE Product (
     ID SERIAL,
     name VARCHAR(40) NOT NULL,
@@ -58,7 +57,9 @@ CREATE TABLE Products_In_Category (
  	PRIMARY KEY (RefundID)
  	);
 
+
  CREATE TABLE Review (
+
  	ID serial,
  	productid VARCHAR(18),
  	userid varchar(18),
@@ -67,7 +68,9 @@ CREATE TABLE Products_In_Category (
  	primary key (id)
  	);
 
+
  CREATE TABLE Customer (
+
  	ID VARCHAR(18),
 	firstName VARCHAR(20) NOT NULL,
 	lastName VARCHAR(20) NOT NULL,
@@ -75,6 +78,24 @@ CREATE TABLE Products_In_Category (
 
 	CONSTRAINT uniqueEmail UNIQUE(email),
 	PRIMARY KEY (Id)
+);
+
+
+ CREATE TABLE Cart (
+    cart_ID serial,
+    customer_ID VARCHAR(18),
+    total_price VARCHAR(18),
+
+    PRIMARY KEY (cart_ID),
+    FOREIGN KEY (customer_ID) REFERENCES customer(ID)
+);
+
+ CREATE TABLE Cart_Products (
+    cart_ID serial,
+    product_ID serial,
+
+    FOREIGN KEY (cart_ID) REFERENCES Cart(cart_ID),
+    FOREIGN KEY (product_ID) REFERENCES Product(ID)
 );
 
 
@@ -108,3 +129,4 @@ CREATE TABLE Products_In_Category (
 --     FOREIGN KEY (productID) REFERENCES Product(ID),
 --     PRIMARY KEY (ID)
 -- );
+
