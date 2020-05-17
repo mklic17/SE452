@@ -10,7 +10,7 @@ import java.util.List;
 public class OrdersService {
 
     @Autowired
-    private OrdersRepos orderRepository;
+    private OrdersRepo orderRepository;
 
     public List<Orders> getAllOrders() {
         ArrayList<Orders> orderList = new ArrayList<>();
@@ -20,10 +20,10 @@ public class OrdersService {
         return orderList;
     }
 
-    public Orders getOrder(Long Id) {
+    public Orders getOrder(Integer Id) {
         return orderRepository.findById(Id).orElse(null);
     }
-
+  
     public void addOrder(Orders order) {
         orderRepository.save(order);
     }

@@ -19,14 +19,14 @@ import group3.com.example.retail.category.Category;
 
 
 @Controller
-@RequestMapping("product")
+@RequestMapping({"product"})    // SET TO BE THE MAIN
 public class ProductController {
 	
 	@Autowired
 	private ProductService productService;
+
 	
-	
-	@GetMapping("/") // Return all Products
+	@GetMapping({"", "/", "/home"}) // Return all Products
 	public ModelAndView getAllProducts() { 
 		ModelAndView mnv = new ModelAndView();
 		mnv.setViewName("product/list");
@@ -43,7 +43,7 @@ public class ProductController {
         return mnv;
 	}
 	
-
+//
 	@GetMapping({"/new"})
 	public ModelAndView addProduct() {  // Adds a product to the DB with new values
 		ModelAndView mnv = new ModelAndView();
