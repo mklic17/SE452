@@ -17,8 +17,6 @@ public class RetailApplication {
 		SpringApplication.run(RetailApplication.class, args);
 	
 
-		SpringApplication.run(RetailApplication.class, args);	
-
 	}
 
 }
