@@ -1,11 +1,10 @@
 package group3.com.example.retail.review;
 
 
-import javax.persistence.*;
 
 import lombok.Data;
+import javax.persistence.*;
 
-import java.util.List;
 
 @Data
 @Entity
@@ -18,6 +17,7 @@ public class Review {
 	private String productid;
 	private String userID;
 	private String comment;
+
 
 
 }

@@ -11,9 +11,11 @@ OrderItems(Id, orderID, productID, productTotal);
 CREATE TABLE Product (
     ID SERIAL,
     name VARCHAR(40) NOT NULL,
-    description VARCHAR(1000),
     price VARCHAR(18),
-    isActive BOOLEAN DEFAULT true,
+    summary Varchar(200),
+    description VARCHAR(10000),
+    image varchar(200),
+    -- isActive BOOLEAN DEFAULT true,
 
     PRIMARY KEY (Id)
 );
@@ -22,7 +24,7 @@ CREATE TABLE Product (
 CREATE TABLE Category (
     ID SERIAL,
     name VARCHAR(40) NOT NULL,
-    parent VARCHAR(20),
+    parent VARCHAR(20), -- parent or child?
 
     PRIMARY KEY (Id)
 );
@@ -55,7 +57,9 @@ CREATE TABLE Products_In_Category (
  	PRIMARY KEY (RefundID)
  	);
 
- CREATE TABLE REVIEW (
+
+ CREATE TABLE Review (
+
  	ID serial,
  	productid VARCHAR(18),
  	userid varchar(18),
@@ -64,7 +68,9 @@ CREATE TABLE Products_In_Category (
  	primary key (id)
  	);
 
- CREATE TABLE customer (
+
+ CREATE TABLE Customer (
+
  	ID VARCHAR(18),
 	firstName VARCHAR(20) NOT NULL,
 	lastName VARCHAR(20) NOT NULL,
@@ -73,6 +79,7 @@ CREATE TABLE Products_In_Category (
 	CONSTRAINT uniqueEmail UNIQUE(email),
 	PRIMARY KEY (Id)
 );
+
 
  CREATE TABLE Cart (
     cart_ID serial,
@@ -90,3 +97,36 @@ CREATE TABLE Products_In_Category (
     FOREIGN KEY (cart_ID) REFERENCES Cart(cart_ID),
     FOREIGN KEY (product_ID) REFERENCES Product(ID)
 );
+
+
+-- CREATE TABLE Customer (
+--     ID VARCHAR(18),
+--     firstName VARCHAR(20) NOT NULL,
+--     lastName VARCHAR(20) NOT NULL,
+--     email VARCHAR(50),
+--
+--     CONSTRAINT uniqueEmail UNIQUE(email),
+--     PRIMARY KEY (Id)
+-- );
+--
+-- CREATE TABLE Orders (
+--     ID VARCHAR(18),
+--     customerID VARCHAR(18) NOT NULL,
+--     datePlaced TIMESTAMP NOT NULL,
+--     status varchar(20),
+--
+--     FOREIGN KEY (customerID) REFERENCES Customer(ID),
+--     PRIMARY KEY (Id)
+-- );
+--
+-- CREATE TABLE OrderItems (
+--     ID varchar(18),
+--     orderId varchar(18) NOT NULL,
+--     productID varchar(18) NOT NULL,
+--     productTotal money,
+--
+--     FOREIGN KEY (orderID) REFERENCES Orders(ID),
+--     FOREIGN KEY (productID) REFERENCES Product(ID),
+--     PRIMARY KEY (ID)
+-- );
+
