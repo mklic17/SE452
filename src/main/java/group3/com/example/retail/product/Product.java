@@ -6,17 +6,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-//<<<<<<< HEAD
 import javax.persistence.*;
-//=======
-//import javax.persistence.Column;
-//import javax.persistence.Entity;
-//import javax.persistence.FetchType;
-//import javax.persistence.GeneratedValue;
-//import javax.persistence.GenerationType;
-//import javax.persistence.Id;
-//import javax.persistence.Table;
-//>>>>>>> 846fe68d9540360f2a77efbc0cccb0076a323772
 
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
@@ -53,8 +43,9 @@ public class Product implements Serializable {
     @Column(name="description")
     private String description;
     
-    
-//<<<<<<< HEAD
+    @Column(name="image")
+    private String image;
+
 //    @ManyToMany
 //    @JoinTable(
 //    		name="ProductsInCategory",
@@ -65,9 +56,6 @@ public class Product implements Serializable {
 
     @ManyToMany(mappedBy = "cartProducts", fetch = FetchType.EAGER)
     private Set<Cart> cartAssignments;
-//=======
-    @Column(name="image")
-    private String image;
     
  
     @ManyToMany (mappedBy = "products", fetch = FetchType.LAZY)
@@ -76,8 +64,6 @@ public class Product implements Serializable {
 
 //    @ManyToMany
 //    private Set<Cart> cartAssignments;
-//>>>>>>> 846fe68d9540360f2a77efbc0cccb0076a323772
-
 	
 	
     
