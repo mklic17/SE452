@@ -3,14 +3,8 @@ package group3.com.example.retail.cart;
 import group3.com.example.retail.product.Product;
 import lombok.Data;
 import javax.persistence.*;
-
-import group3.com.example.retail.product.Product;
-import lombok.ToString;
-
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 @Data
 @Entity
@@ -49,7 +43,7 @@ public class Cart {
             joinColumns= @JoinColumn(name="cart_ID"),
             inverseJoinColumns=@JoinColumn(name="product_ID")
     )
-    private List<Product> cartProducts = new ArrayList<Product>();
+    private List<Product> cartProducts = new ArrayList<>();
 
     @Override
     public String toString() {

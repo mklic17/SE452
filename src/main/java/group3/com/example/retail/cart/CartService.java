@@ -32,6 +32,7 @@ public class CartService {
         Cart cart = cartRepository.findById(userID).orElseGet(() -> {
             Cart newCart = new Cart();
             newCart.setCustomerID(userID);
+            newCart.setCartProducts(new ArrayList<>());
             return cartRepository.save(newCart);
         });
 
