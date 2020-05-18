@@ -22,11 +22,11 @@
 #image {
   min-width: 400px;
   min-height: 400px;
-
   width: 30vw;
   height: 30vh;
-
-
+}
+#searh {
+  text-align: center;
 }
 
 #addToCart {

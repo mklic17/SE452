@@ -74,7 +74,6 @@ public class Catalog {
 			}
 		}
 		
-
 		
 	}
 	
@@ -98,7 +97,7 @@ public class Catalog {
 		return productList;
 	}
 	
-
+//
 
 
 	
