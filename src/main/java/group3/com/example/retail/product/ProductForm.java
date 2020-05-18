@@ -8,7 +8,9 @@ public class ProductForm {
 	
 	private Long Id;
 	private String name;
-	private String description;
 	private double price;
-
+	private String summary;
+	private String description;
+	private String image;
+	
 }
