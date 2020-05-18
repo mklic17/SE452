@@ -7,6 +7,7 @@ import javax.persistence.*;
 import group3.com.example.retail.product.Product;
 import lombok.ToString;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -32,9 +33,14 @@ public class Cart {
 
     public void insertCartItem(Product product) { cartProducts.add(product); }
 
-    public void removeCartItem(Product product) { cartProducts.remove(product); }
-
-    public double getTotalPrice() { return this.totalPrice; }
+    public void removeCartItem(long productID) {
+        for (Product product : cartProducts) {
+            if (product.getId() == productID) {
+                cartProducts.remove(product);
+                return;
+            }
+        }
+    }
 
     // Cart is the owner in this ManyToMany relationship
     @ManyToMany(fetch = FetchType.EAGER)
@@ -43,7 +49,7 @@ public class Cart {
             joinColumns= @JoinColumn(name="cart_ID"),
             inverseJoinColumns=@JoinColumn(name="product_ID")
     )
-    private List<Product> cartProducts;
+    private List<Product> cartProducts = new ArrayList<Product>();
 
     @Override
     public String toString() {

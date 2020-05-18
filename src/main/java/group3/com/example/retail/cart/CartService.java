@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 import lombok.Data;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Data
 @Service
@@ -30,7 +29,11 @@ public class CartService {
     public void addProductToCart(long productID, long userID) {
         // get user's cart object with userID,
         // if there is no user cart yet, make one
-        Cart cart = cartRepository.findById(userID).orElse(new Cart());
+        Cart cart = cartRepository.findById(userID).orElseGet(() -> {
+            Cart newCart = new Cart();
+            newCart.setCustomerID(userID);
+            return cartRepository.save(newCart);
+        });
 
         // get the product object with productID
         Product product = productRepository.findById(productID);
@@ -42,12 +45,20 @@ public class CartService {
 
     public void removeProductFromCart(long productID, long userID) {
         // get user's cart with userId
-        Optional<Cart> cart = cartRepository.findById(userID);
+        // TODO: change this orElse()
+        Cart cart = cartRepository.findById(userID).orElse(null);
         // get the product with productId and its price
         Product product = productRepository.findById(productID);
         double productPrice = product.getPrice();
-        cart.get().subtractFromTotalPrice(productPrice);
-        cart.get().removeCartItem(product);
-        cartRepository.save(cart.get());
+        cart.subtractFromTotalPrice(productPrice);
+        cart.removeCartItem(productID);
+        cartRepository.save(cart);
+    }
+
+    public void clearCart(long userID) {
+        Cart cart = cartRepository.findByCustomerID(userID);
+        cart.getCartProducts().clear();
+        cart.setTotalPrice(0);
+        cartRepository.save(cart);
     }
 }
