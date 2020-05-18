@@ -19,18 +19,19 @@
         <!-- Navigation -->
         <nav th:replace="fragments/navbar :: navigation"></nav>
 
-        <table class="productsTable">
-            <tr th:each="product : ${products}">
-                <td th:text="${product.name}"></td>
-                <td th:text="${product.price}"></td>
-                <!--        TODO: Comment in when merged        -->
-                <!-- <td> <img id="image" th:src="${product.image}" /> </td>-->
-                <!--        TODO: OnClick then remove Product from Cart            -->
-                <td> <button> Remove </button> </td>
-            </tr>
-        </table>
+        <center>
+            <table class="productsTable">
+                <tr th:each="product : ${products}">
+                    <td> <center><img id="image" th:src="${product.image}" height="50" width="50" /></center> </td>
+                    <td th:text="${product.name}"></td>
+                    <td th:text="${product.price}"></td>
+                    <!--        TODO: OnClick then remove Product from Cart            -->
+                    <td> <button class="btn btn-info"> Remove </button> </td>
+                </tr>
+            </table>
 
-        <button><a th:href="${'/checkout/'}"> Proceed to checkout </a></button>
+            <button class="btn btn-info"><a th:href="${'/checkout/'}" style="color:white"> Proceed to checkout </a></button>
+        </center>
         <div th:insert="fragments/footer :: footer"></div>
     </body>
 </html>
