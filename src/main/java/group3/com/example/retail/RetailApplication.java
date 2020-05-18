@@ -6,7 +6,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import group3.com.example.retail.cart.*;
 import group3.com.example.retail.product.ProductRepository;
 import group3.com.example.retail.refund.Reason;
@@ -17,7 +18,9 @@ import group3.com.example.retail.review.ReviewRepo;
 
 @SpringBootApplication
 public class RetailApplication {
-	
+
+	private static final Logger log = LoggerFactory.getLogger(RetailApplication.class);
+
 //	@Bean
 //	public CommandLineRunner writeReview(ReviewRepo reviewRepo) {
 //		return (args) -> {
@@ -65,12 +68,19 @@ public class RetailApplication {
 //	}
 
 	@Bean
-	public CommandLineRunner demoCart(CartRepository cartRepo, ProductRepository productRepo) {
+	public CommandLineRunner demoCart(CartRepository cartRepo, CartService cartService, ProductRepository productRepo) {
 		return (args) -> {
 			// Get all Carts
-			cartRepo.findAll().forEach((cart) -> { System.out.println(cart.toString()); });
+//			cartRepo.findAll().forEach((cart) -> { System.out.println(cart.toString()); });
 
 			// Add item to a Cart
+			Cart customerCart = cartRepo.findByCustomerID(1L);
+			cartService.addProductToCart(1L, 1L);
+			System.out.println("Added a product, here's the cart: " + cartRepo.findByCustomerID(1L).toString());
+
+			// Remove the item from the Cart
+			cartService.removeProductFromCart(1L, 1L);
+			System.out.println("Removed the product, here's the cart: " + cartRepo.findByCustomerID(1L).toString());
 		};
 	}
 

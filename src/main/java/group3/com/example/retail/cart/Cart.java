@@ -5,6 +5,10 @@ import lombok.Data;
 import javax.persistence.*;
 
 import group3.com.example.retail.product.Product;
+import lombok.ToString;
+
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Data
@@ -17,7 +21,7 @@ public class Cart {
     private long cartID;
 
     @Column(name="customer_ID")
-    private String customerID;
+    private long customerID;
 
     @Column(name="total_price")
     private double totalPrice;
@@ -26,14 +30,26 @@ public class Cart {
 
     public void subtractFromTotalPrice(double priceToSubtract) { this.totalPrice -= priceToSubtract; }
 
+    public void insertCartItem(Product product) { cartProducts.add(product); }
+
+    public void removeCartItem(Product product) { cartProducts.remove(product); }
+
     public double getTotalPrice() { return this.totalPrice; }
 
     // Cart is the owner in this ManyToMany relationship
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name="Cart_Products",
-            joinColumns= @JoinColumn(name="cart_ID") ,
+            joinColumns= @JoinColumn(name="cart_ID"),
             inverseJoinColumns=@JoinColumn(name="product_ID")
     )
-    private Set<Product> cartProducts;
+    private List<Product> cartProducts;
+
+    @Override
+    public String toString() {
+        return String.format("Cart ID: " + this.cartID +
+                " Customer ID: " + this.customerID +
+                " Total Price: " + this.totalPrice +
+                " Product in Cart: " + this.cartProducts.size());
+    }
 }

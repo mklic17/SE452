@@ -1,15 +1,14 @@
 package group3.com.example.retail.product;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.Set;
-
 import javax.persistence.*;
-
 import group3.com.example.retail.cart.Cart;
 import group3.com.example.retail.category.Category;
-
 import lombok.Data;
 import lombok.Getter;
+import lombok.ToString;
 
 @Data
 @Entity
@@ -41,7 +40,7 @@ public class Product {
 //    private Set<Category> categoryAssignments;
 
     @ManyToMany(mappedBy = "cartProducts", fetch = FetchType.EAGER)
-    private Set<Cart> cartAssignments;
+    private List<Cart> cartAssignments;
 
     public double getPrice() { return this.price; }
 	
