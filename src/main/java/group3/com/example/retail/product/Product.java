@@ -65,6 +65,6 @@ public class Product implements Serializable {
 //    @ManyToMany
 //    private Set<Cart> cartAssignments;
 	
-	
+	//
     
 }
