@@ -21,13 +21,17 @@
 
         <center>
             <table class="productsTable">
-                <tr th:each="product : ${products}">
-                    <td> <center><img id="image" th:src="${product.image}" height="50" width="50" /></center> </td>
-                    <td th:text="${product.name}"></td>
-                    <td th:text="${product.price}"></td>
-                    <!--        TODO: OnClick then remove Product from Cart            -->
-                    <td> <button class="btn btn-info"> Remove </button> </td>
-                </tr>
+                <div th:if="${products == null}"> No products in cart! </div>
+                <div th:unless="${products == null}">
+                    <h4>My Cart: </h4>
+                    <tr th:each="product : ${products}">
+                        <td> <center><img id="image" th:src="${product.image}" height="50" width="50" /></center> </td>
+                        <td th:text="${product.name}"></td>
+                        <td th:text="${product.price}"></td>
+                        <!--        TODO: OnClick then remove Product from Cart            -->
+                        <td> <button class="btn btn-info"> Remove </button> </td>
+                    </tr>
+                </div>
             </table>
 
             <button class="btn btn-info"><a th:href="${'/checkout/'}" style="color:white"> Proceed to checkout </a></button>

@@ -1,10 +1,17 @@
 package group3.com.example.retail.cart;
 
+import group3.com.example.retail.product.Product;
 import group3.com.example.retail.product.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class CartController {
@@ -12,15 +19,19 @@ public class CartController {
 	@Autowired
 	private ProductService productService;
 
+	@Autowired
+	private CartRepository cartRepository;
+
 	// go to 'localhost/7996/cart/'
-	@GetMapping("/cart")
-	public ModelAndView getCart() {
+	@GetMapping("/cart/{userID}")
+	public ModelAndView getCart(@PathVariable long userID) {
 		ModelAndView mnv = new ModelAndView();
 		mnv.setViewName("cart/cart");
-		mnv.addObject("user", "Fake User");
-		// Put all products in cart
-		// TODO: Get real products in cart from table
-		mnv.addObject("products", productService.getAllProducts());
+
+		mnv.addObject("user", userID);
+		Cart cart = cartRepository.findByCustomerID(userID);
+		List<Product> productsInCart = cart.getCartProducts();
+		mnv.addObject("products", productsInCart);
 		return mnv;		
 	}
 

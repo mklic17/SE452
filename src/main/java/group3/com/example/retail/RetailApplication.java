@@ -68,35 +68,35 @@ public class RetailApplication {
 //		};
 //	}
 
-	@Bean
-	public CommandLineRunner demoCart(CartRepository cartRepo, CartService cartService, ProductRepository productRepo) {
-		return (args) -> {
+//	@Bean
+//	public CommandLineRunner demoCart(CartRepository cartRepo, CartService cartService, ProductRepository productRepo) {
+//		return (args) -> {
 			// Get all Carts
 //			cartRepo.findAll().forEach((cart) -> { System.out.println(cart.toString()); });
 
 			// Add item to a Cart
-			Cart customerCart = cartRepo.findByCustomerID(1L);
-			cartService.addProductToCart(1L, 1L);
-			System.out.println("Added a product, here's the cart: " + cartRepo.findByCustomerID(1L).toString());
+//			Cart customerCart = cartRepo.findByCustomerID(1L);
+//			cartService.addProductToCart(1L, 1L);
+//			System.out.println("Added a product, here's the cart: " + cartRepo.findByCustomerID(1L).toString());
 
 			// Remove the item from the Cart
-			cartService.removeProductFromCart(1L, 1L);
-			System.out.println("Removed the product, here's the cart: " + cartRepo.findByCustomerID(1L).toString());
+//			cartService.removeProductFromCart(1L, 1L);
+//			System.out.println("Removed the product, here's the cart: " + cartRepo.findByCustomerID(1L).toString());
 
 			// Add several products to several carts
-			cartService.addProductToCart(1L, 1L);
-			cartService.addProductToCart(2L, 1L);
-			cartService.addProductToCart(3L, 1L);
-			cartService.addProductToCart(1L, 2L);
-			cartService.addProductToCart(3L, 2L);
-			System.out.println("Here's user ID 1's cart: " + cartRepo.findByCustomerID(1L).toString());
-			System.out.println("Here's user ID 2's cart: " + cartRepo.findByCustomerID(2L).toString());
-
+//			cartService.addProductToCart(1L, 1L);
+//			cartService.addProductToCart(2L, 1L);
+//			cartService.addProductToCart(3L, 1L);
+//			cartService.addProductToCart(1L, 2L);
+//			cartService.addProductToCart(3L, 2L);
+//			System.out.println("Here's user ID 1's cart: " + cartRepo.findByCustomerID(1L).toString());
+//			System.out.println("Here's user ID 2's cart: " + cartRepo.findByCustomerID(2L).toString());
+//
 			// Clear a user's cart
-			cartService.clearCart(1L);
-			System.out.println("Emptied user ID 1's cart: " + cartRepo.findByCustomerID(1L).toString());
-		};
-	}
+//			cartService.clearCart(1L);
+//			System.out.println("Emptied user ID 1's cart: " + cartRepo.findByCustomerID(1L).toString());
+//		};
+//	}
 	
 	public static void main(String[] args) {
 		SpringApplication.run(RetailApplication.class, args);
