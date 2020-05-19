@@ -10,6 +10,7 @@ import org.springframework.web.servlet.ModelAndView;
 import group3.com.example.retail.product.Product;
 
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,16 +31,20 @@ public class CategoryController {
 	@GetMapping("/")   // getAllCategory()
 	public ModelAndView getAllCategory() {
 		ModelAndView mnv = new ModelAndView();
-		mnv.setViewName("category/listAllCategory");
+		mnv.setViewName("category/list");
 		mnv.addObject("categories", categoryService.getAllCategory());
 		return mnv;
     }
 	
-//	@GetMapping("/{Id")
-//	public ModelAndView createCategory() {
-//		ModelAndView mnv = new ModelAndView();
-//		return mnv;
-//	}
+	@GetMapping("/{Id}")
+	public ModelAndView getCategory(@PathVariable Long Id) {
+		ModelAndView mnv = new ModelAndView();
+		mnv.setViewName("category/show");
+		Category curr = categoryService.getCategory(Id);
+		mnv.addObject("category", curr);
+		mnv.addObject("products", curr.getProducts());
+		return mnv;
+	}
 	
 	
 	@GetMapping("/new")
@@ -61,16 +66,14 @@ public class CategoryController {
 	    }		
 	    categoryService.addCategory(cat);
 		mnv.addObject("categories", categoryService.getAllCategory());
-	    mnv.setViewName("category/listAllCategory");
+	    mnv.setViewName("category/list");
 	    return mnv;
 	}
 	
-	
 	//
-	
 	public String getNameFromID(Long Id) {
 		return categoryService.getCategory(Id).getName();
 	}
-
+//
 
 }

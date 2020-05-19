@@ -25,6 +25,14 @@
   width: 30vw;
   height: 30vh;
 }
+
+#icon {
+    min-width: 200px;
+    min-height: 200px;
+    width: 20vw;
+    height: 25vh;
+}
+
 #searh {
   text-align: center;
 }

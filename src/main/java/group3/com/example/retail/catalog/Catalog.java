@@ -24,6 +24,7 @@ public class Catalog {
 	
 															   // Product(
 	
+	//////////////////////////////// STATIC  START ////////////////////////////////////////
 	public static Catalog getCatalog(List<Product> prodList, List<Category> catList) {
 		if (storefrontCatalog == null) {
 			storefrontCatalog = new Catalog(prodList, catList);
@@ -40,13 +41,11 @@ public class Catalog {
 		storefrontCatalog = null;
 		storefrontCatalog = new Catalog(prodList, catList);
 	}
+	//////////////////////////////// STATIC STOP //////////////////////////////////////// 
 	
 	
 	// private constructor
 	private Catalog(List<Product> prodList, List<Category> catList) {
-		
-//		categoryFactory = CategoryFactory.getCategoryFactory();
-//		productFactory = new ProductFactory(); 
 		
 		catalogMap = new HashMap<Long, List<Long>>();  
 		categoryMap = new HashMap<Long, Category>();
@@ -97,7 +96,7 @@ public class Catalog {
 		return productList;
 	}
 	
-//
+
 
 
 	

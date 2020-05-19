@@ -47,7 +47,7 @@ public class Category implements Serializable{
 	@JoinTable(
 			name = "Products_In_Category",
 			joinColumns = {
-					@JoinColumn( name = "produt_Id", referencedColumnName = "Id")
+					@JoinColumn( name = "product_Id", referencedColumnName = "Id")
 			}, 
 			inverseJoinColumns = {
 					@JoinColumn( name = "category_Id", referencedColumnName = "Id")
