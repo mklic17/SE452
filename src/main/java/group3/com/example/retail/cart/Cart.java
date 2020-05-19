@@ -3,9 +3,8 @@ package group3.com.example.retail.cart;
 import group3.com.example.retail.product.Product;
 import lombok.Data;
 import javax.persistence.*;
-
-import group3.com.example.retail.product.Product;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Entity
@@ -17,7 +16,7 @@ public class Cart {
     private long cartID;
 
     @Column(name="customer_ID")
-    private String customerID;
+    private long customerID;
 
     @Column(name="total_price")
     private double totalPrice;
@@ -26,14 +25,31 @@ public class Cart {
 
     public void subtractFromTotalPrice(double priceToSubtract) { this.totalPrice -= priceToSubtract; }
 
-    public double getTotalPrice() { return this.totalPrice; }
+    public void insertCartItem(Product product) { cartProducts.add(product); }
+
+    public void removeCartItem(long productID) {
+        for (Product product : cartProducts) {
+            if (product.getId() == productID) {
+                cartProducts.remove(product);
+                return;
+            }
+        }
+    }
 
     // Cart is the owner in this ManyToMany relationship
     @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name="Cart_Products",
-            joinColumns= @JoinColumn(name="cart_ID") ,
+            joinColumns= @JoinColumn(name="cart_ID"),
             inverseJoinColumns=@JoinColumn(name="product_ID")
     )
-    private Set<Product> cartProducts;
+    private List<Product> cartProducts = new ArrayList<>();
+
+    @Override
+    public String toString() {
+        return String.format("Cart ID: " + this.cartID +
+                " Customer ID: " + this.customerID +
+                " Total Price: " + this.totalPrice +
+                " Product in Cart: " + this.cartProducts.size());
+    }
 }

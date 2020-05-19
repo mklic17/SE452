@@ -1,23 +1,14 @@
 package group3.com.example.retail.product;
 
 import java.io.Serializable;
-import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.Map;
+import java.util.List;
 import java.util.Set;
-
 import javax.persistence.*;
-
-import org.hibernate.annotations.Type;
-import org.hibernate.annotations.TypeDef;
-import org.hibernate.annotations.TypeDefs;
-
 import group3.com.example.retail.cart.Cart;
 import group3.com.example.retail.category.Category;
-
 import lombok.Data;
-import lombok.Getter;
-import com.vladmihalcea.hibernate.type.basic.PostgreSQLHStoreType;
 
 @Data
 @Entity
@@ -46,25 +37,10 @@ public class Product implements Serializable {
     @Column(name="image")
     private String image;
 
-//    @ManyToMany
-//    @JoinTable(
-//    		name="ProductsInCategory",
-//    		joinColumns=@JoinColumn(name="productId"),
-//    		inverseJoinColumns=@JoinColumn(name="categoryId")
-//    )
-//    private Set<Category> categoryAssignments;
-
     @ManyToMany(mappedBy = "cartProducts", fetch = FetchType.EAGER)
-    private Set<Cart> cartAssignments;
-    
+    private List<Cart> cartAssignments = new ArrayList<>();
  
     @ManyToMany (mappedBy = "products", fetch = FetchType.LAZY)
     private Set<Category> categoryAssignments = new HashSet<Category>();
-    
-
-//    @ManyToMany
-//    private Set<Cart> cartAssignments;
-	
-	//
     
 }
