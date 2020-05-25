@@ -1,6 +1,7 @@
 package group3.com.example.retail.category;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.validation.Valid;
 
@@ -41,8 +42,13 @@ public class CategoryController {
 		ModelAndView mnv = new ModelAndView();
 		mnv.setViewName("category/show");
 		Category curr = categoryService.getCategory(Id);
+		
+		System.out.println("Category " + curr.getName());
+		curr.printProductsInCategory();
+		
+		List<Product> li =  curr.getProducts();
 		mnv.addObject("category", curr);
-		mnv.addObject("products", curr.getProducts());
+		mnv.addObject("products", li);
 		return mnv;
 	}
 	
@@ -54,6 +60,7 @@ public class CategoryController {
 		mnv.addObject("category", new Category());
 		return mnv;
 	}
+	
 	
 	@PostMapping("/new")
 	public ModelAndView postCategory(@Valid Category cat, BindingResult result) {

@@ -73,7 +73,7 @@ public class Catalog {
 			}
 		}
 		
-		
+		//
 	}
 	
 	public Collection<Category> getAllStoreCategories() {

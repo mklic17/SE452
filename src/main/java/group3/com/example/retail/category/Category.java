@@ -1,7 +1,9 @@
 package group3.com.example.retail.category;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -53,7 +55,7 @@ public class Category implements Serializable{
 					@JoinColumn( name = "category_Id", referencedColumnName = "Id")
 			}
 	)
-	private Set<Product> products = new HashSet<Product>();
+	private List<Product> products = new ArrayList<Product>();
 
 
 	public Category(String name, long parent) {
@@ -62,6 +64,12 @@ public class Category implements Serializable{
 	}
 	
 	public Category() {
+	}
+	
+	public void printProductsInCategory() {
+		for(Product p : products) {
+			System.out.println("  Product: " + p.getName());
+		}
 	}
 	
 

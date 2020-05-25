@@ -37,6 +37,15 @@
   text-align: center;
 }
 
+.createProduct {
+    float: right;
+}
+
+.categoryTable {
+  border: 1px solid #ddd;
+  padding: 8px;
+}
+
 #addToCart {
   float: right;
 }

@@ -43,22 +43,23 @@ public class ProductController {
         return mnv;
 	}
 	
-//
+
 	@GetMapping({"/new"})
 	public ModelAndView addProduct() {  // Adds a product to the DB with new values
 		ModelAndView mnv = new ModelAndView();
 		mnv.setViewName("product/newProductform");
 		mnv.addObject("product", new Product());
+		mnv.addObject("heading", "New Product");
 		mnv.addObject("allCategories", getCategories()); 
 		return mnv;
 	}
-	
 	
 	@PostMapping("/create") // POST mapping for new product
 	  public ModelAndView createProduct(@Valid Product prod, BindingResult result) {  
 		ModelAndView mnv = new ModelAndView();
 	    if(result.hasErrors()) {
 			mnv.setViewName("product/newProductform");
+			mnv.addObject("heading", "New Product");
 	        mnv.addObject("product", prod);
 //	        mnv.addObject("categories", getCategories());
 	        return mnv;
@@ -67,7 +68,7 @@ public class ProductController {
 	    mnv.addObject("product", productService.getProduct(prod.getId()));
 	    mnv.setViewName("product/show");
 	    return mnv;
-	  }
+	  } //
 	
 	
 	@GetMapping("/edit/{Id}")  // GET  method for editing a product
@@ -75,6 +76,7 @@ public class ProductController {
 		ModelAndView mnv = new ModelAndView();
 		Product prod= productService.getProduct(Id);
 		mnv.setViewName("product/newProductform");
+		mnv.addObject("heading", "Edit Product");
 		mnv.addObject("product", prod);
 //		mav.addObject("category", getCategories()); 
 		return mnv;

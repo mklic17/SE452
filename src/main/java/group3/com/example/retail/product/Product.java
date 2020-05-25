@@ -1,8 +1,10 @@
 package group3.com.example.retail.product;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -61,7 +63,7 @@ public class Product implements Serializable {
  
     @Exclude
     @ManyToMany (mappedBy = "products", fetch = FetchType.LAZY)
-    private Set<Category> categoryAssignments = new HashSet<Category>();
+    private List<Category> categoryAssignments = new ArrayList<Category>();
     
     
 }

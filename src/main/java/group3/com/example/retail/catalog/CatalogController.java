@@ -27,8 +27,7 @@ public class CatalogController {
 		mnv.setViewName("admin/adminDashboard");
 		return mnv;
 	}
-//
-	
+
 	
 	@GetMapping({"", "/home", "index", "/"}) // Return all Products
 	public ModelAndView home() {
