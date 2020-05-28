@@ -13,17 +13,19 @@
 
         <div class="row">
             <div class="spacing"></div>
+
             <!-- Left Content Start -->
             <div class="col-lg-4">
-                <div class="w3-card-4">
-                    <h2 th:text="${category.name}"></h2>
-                    <br>
-                    <h5>Parent Category:
-                        <a th:href="${'/category/' + category.parent}"><span th:text="${parentCategory}"></span></a>
-                    </h5>
-                </div>
+                <h2>Category: <b><span th:text="${category.name}"></span></b></h2>
+                <br>
+                <h5>Parent Category:
+                    <!-- <a th:href="${'/category/' + category.parent}"> -->
+                        <span th:text="${parentCategory}"></span>
 
+                    <!-- </a> -->
+                </h5>
             </div>
+
 
 
             <!-- Right Content Start -->
@@ -43,6 +45,43 @@
             </div>
 
         </div>
+
+
+        <div class="spacing"></div>
+
+
+        <div class="row">
+            <!-- Catalog assignments START -->
+            <div class="col-lg-4">
+                <h4>Product Assignment</h4>
+            </div>
+
+
+            <div class="col-lg-8">
+                <form class="form-horizontal" th:action="@{/category/addProductAssignment}" th:object="${category}" method="POST">
+                    <table class="table table-striped">
+                    <tr>
+                        <th>Product Name</th>
+                        <th>Add</th>
+                    </tr>
+                    <tr th:each="prod : ${allProducts}">
+                        <!-- <td th:text="${cat.id}"></td> -->
+                        <td th:text="${prod.name}"></td>
+                        <td>
+                            <input type="checkbox" th:name="${prod.name}" th:value="${prod}">
+                        </td>
+                    </tr>
+                    </table>
+                    <div class="row">
+                        <button type="submit" class="btn btn-default">Submit</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Catalog assignments END -->
+
+        </div>
+
     </div>
 
 

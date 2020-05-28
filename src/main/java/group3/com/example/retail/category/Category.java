@@ -49,10 +49,10 @@ public class Category implements Serializable{
 	@JoinTable(
 			name = "Products_In_Category",
 			joinColumns = {
-					@JoinColumn( name = "product_Id", referencedColumnName = "Id")
+					@JoinColumn( name = "category_Id", referencedColumnName = "Id")
 			}, 
 			inverseJoinColumns = {
-					@JoinColumn( name = "category_Id", referencedColumnName = "Id")
+					@JoinColumn( name = "product_Id", referencedColumnName = "Id")
 			}
 	)
 	private List<Product> products = new ArrayList<Product>();
@@ -65,13 +65,14 @@ public class Category implements Serializable{
 	
 	public Category() {
 	}
-	
+	//
 	public void printProductsInCategory() {
 		for(Product p : products) {
-			System.out.println("  Product: " + p.getName());
+			System.out.println("---- Product: " + p.getName());
 		}
 	}
 	
 
 }
+//
 

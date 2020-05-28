@@ -51,6 +51,7 @@ public class ProductController {
 		mnv.addObject("product", new Product());
 		mnv.addObject("heading", "New Product");
 		mnv.addObject("allCategories", getCategories()); 
+		mnv.addObject("button", "create"); 
 		return mnv;
 	}
 	
@@ -74,30 +75,29 @@ public class ProductController {
 	@GetMapping("/edit/{Id}")  // GET  method for editing a product
 	public ModelAndView editProduct(@PathVariable Long Id) {
 		ModelAndView mnv = new ModelAndView();
-		Product prod= productService.getProduct(Id);
+		Product prod = productService.getProduct(Id);
 		mnv.setViewName("product/newProductform");
 		mnv.addObject("heading", "Edit Product");
 		mnv.addObject("product", prod);
-//		mav.addObject("category", getCategories()); 
+		mnv.addObject("button", "update"); 
 		return mnv;
 	}
 	
 	
-	@PutMapping("/edit/submit")  // PUT method for editing a product
-	public ModelAndView updateProduct(@Valid Product prod, BindingResult result) {
-		ModelAndView mnv = new ModelAndView();
-	    if(result.hasErrors()) {
-			mnv.setViewName("product/editProductform");
-	        mnv.addObject("product", prod);
-	        mnv.addObject("allCategories", getCategories());
-	        return mnv;
-	    }		
-	    productService.updateProduct(prod.getId(), prod);
-	    
-	    mnv.addObject("product", productService.getProduct(prod.getId()));
-	    mnv.setViewName("product/show");
-	    return mnv;
-	}
+//	@PutMapping("/edit/submit")  // PUT method for editing a product
+//	public ModelAndView updateProduct(@Valid Product prod, BindingResult result) {
+//		ModelAndView mnv = new ModelAndView();
+//	    if(result.hasErrors()) {
+//	    	mnv.setViewName("product/newProductform");
+//			mnv.addObject("heading", "Edit Product");
+//			mnv.addObject("product", prod);	        
+//	        return mnv;
+//	    }		
+//	    productService.updateProduct(prod.getId(), prod);
+//	    mnv.setViewName("product/show");
+//	    mnv.addObject("product", productService.getProduct(prod.getId()));
+//	    return mnv;
+//	}
 	
 	
 	
@@ -113,9 +113,12 @@ public class ProductController {
 	@GetMapping("/delete/{Id}")
 	public ModelAndView deleteProduct(@PathVariable Long Id) {
 		ModelAndView mnv = new ModelAndView();
-		mnv.setViewName("product/delete");
-		mnv.addObject("product", productService.getProduct(Id));
-//		productService.deleteProduct(prod.getId());
+		Product prod = productService.getProduct(Id);		
+		if (prod != null) {
+			productService.deleteProduct(Id);
+		}
+		mnv.setViewName("product/list");
+		mnv.addObject("products", productService.getAllProducts());
 		return mnv;
 	}
 	

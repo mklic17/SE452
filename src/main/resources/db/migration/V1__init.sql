@@ -30,11 +30,11 @@ CREATE TABLE Category (
 );
 
 CREATE TABLE Products_In_Category (
-    ID SERIAL, -- Is this needed?
+    -- ID SERIAL, -- Is this needed?
     product_ID SERIAL, -- productID
     category_ID SERIAL,
 
-    PRIMARY KEY (Id),
+    -- PRIMARY KEY (Id),
     FOREIGN KEY (product_ID) REFERENCES Product(ID),
     FOREIGN KEY (category_ID) REFERENCES Category(ID)
 );
@@ -129,4 +129,3 @@ CREATE TABLE Products_In_Category (
 --     FOREIGN KEY (productID) REFERENCES Product(ID),
 --     PRIMARY KEY (ID)
 -- );
-

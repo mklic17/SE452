@@ -92,31 +92,8 @@
 <!-- image END -->
 
 
-            <!-- Catalog assignments -->
-            <!-- <select th:field="*{profile}">
-                <option th:each="profile : ${allProfiles}" th:value="${profile}" th:text="${profile}">Profile</option>
-            </select>
-
-             <div class="form-group">
-                <h4>Categories</h4>
-                <table class="table table-striped">
-                <tr>
-                    <th>Id</th>
-                    <th>Name</th>
-                    <th>Parent</th>
-                </tr>
-                <tr th:each="cat : ${allCategories}">
-                    <td th:text="${cat.id}"></td>
-                    <td th:text="${cat.name}"></td>
-                    <td th:text="${category.}"></td>
-
-                </tr>
-            </table>
-
-        </div> -->
-
             <div class="row">
-                <button type="submit" class="btn btn-success createProduct">Create</button>
+                <button type="submit" class="btn btn-success createProduct" th:text="${button}"></button>
             </div>
         </form>
     </div>

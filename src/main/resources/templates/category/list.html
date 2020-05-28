@@ -15,7 +15,9 @@
                     <th>Id</th>
                     <th>Name</th>
                     <th>Parent Category</th>
-                    <th> </th>
+                    <th>View</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
                 </tr>
 
                 <tr th:each="category : ${categories}">
@@ -24,9 +26,9 @@
                     <td th:text="${category.parent}"></td>
 
                      <td><a th:href="${'/category/' + category.Id}">View</a></td>
-                     <!--
-                    <td><a th:href="${'/catalog/edit/' + catalog.Id}">Edit</a> </td>
-                    <td><a th:href="${'/catalog/delete/' + catalog.id}">Delete</a> </td> -->
+                    <td><a th:href="${'/category/edit/' + category.Id}">Edit</a></td>
+                    <td><a th:href="${'/category/delete/' + category.id}">Delete</a></td>
+
                 </tr>
             </table>
         <!-- </div> -->

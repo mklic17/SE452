@@ -68,4 +68,3 @@ INSERT INTO Orders (ID, datePlaced, productID, productname, price)  VALUES ('544
 --
 -- INSERT INTO Orders (ID, customerID, datePlaced)  VALUES ('000004', 'aaaac', now());
 -- INSERT INTO OrderItems (Id, orderID, productID, productTotal) VALUES ('dsglkdsg', '000004', '000002', 29.99);
-
