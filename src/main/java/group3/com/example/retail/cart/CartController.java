@@ -4,6 +4,7 @@ import group3.com.example.retail.product.Product;
 import group3.com.example.retail.product.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.ModelAndView;
@@ -17,6 +18,9 @@ public class CartController {
 
 	@Autowired
 	private CartRepository cartRepository;
+
+	@Autowired
+	private CartService cartService;
 
 	// go to 'localhost/7996/cart/'
 	@GetMapping("/cart/{userID}")
@@ -38,5 +42,14 @@ public class CartController {
 		// TODO: Get real products in cart from table
 		mnv.addObject("products", productService.getAllProducts());
 		return mnv;
+	}
+
+	@GetMapping("/removeFromCart/{productId}")
+	public String removeFromCart(@PathVariable Long productId) {
+		// TODO: Remove hardcoded user ID
+		// Remove product from cart
+		cartService.removeProductFromCart(productId, 1);
+		// redirect to cart view
+		return "redirect:/cart/1";
 	}
 }
