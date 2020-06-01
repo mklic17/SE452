@@ -46,7 +46,7 @@ public class Category implements Serializable{
 	private Long parent;
 
 
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(
 			name = "Products_In_Category",
 			joinColumns = {

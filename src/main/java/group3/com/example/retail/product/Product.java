@@ -61,7 +61,7 @@ public class Product implements Serializable {
     
  
     @Exclude
-    @ManyToMany (mappedBy = "products", fetch = FetchType.LAZY)
+    @ManyToMany (mappedBy = "products", fetch = FetchType.EAGER)
     private Set<Category> categoryAssignments = new HashSet<Category>();
     
     

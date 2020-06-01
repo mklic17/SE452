@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.NoHandlerFoundException;
 
+import group3.com.example.retail.category.Category;
 import group3.com.example.retail.product.Product;
 
 
@@ -32,7 +33,7 @@ public class CatalogController {
 	@GetMapping({"", "/home", "index", "/"}) // Return all Products
 	public ModelAndView home() {
 		ModelAndView mnv = new ModelAndView();
-		mnv.setViewName("other/home");
+		mnv.setViewName("home/home");
 		mnv.addObject("categorys", catalog.getAllStoreCategories());
 		mnv.addObject("products", catalog.getAllProducts() );
 		return mnv;
@@ -42,9 +43,11 @@ public class CatalogController {
 	@GetMapping({"/{categoryName}", "/{categoryName}/"}) // Return all Products in Category
 	public ModelAndView getCategory(@PathVariable String categoryName) {
 		ModelAndView mnv = new ModelAndView();
-//		mnv.setViewName("other/home");
-//		mnv.addObject("categorys", catalog.getAllProductsInCategory(categoryName));
-//		mnv.addObject("products", catalog.getAllProductsInCategory(categoryName));
+		Category cat = catalog.getCategoryByNane(categoryName);
+		
+		mnv.setViewName("home/home");
+		mnv.addObject("categorys", catalog.getAllProductsInCategory(categoryName));
+		mnv.addObject("products", cat.getProducts());
 		return mnv;
 	}
 	

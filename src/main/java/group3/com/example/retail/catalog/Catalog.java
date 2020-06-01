@@ -19,7 +19,8 @@ public class Catalog {
 	private Map<Long, List<Long>> catalogMap = null;      // Category ID (parent) --> List<Category Id's>  (children)
 	private Map<Long, Category> categoryMap = null;            // Category ID --> Category 
 	private Map<Long, Product> productMap = null;              // Product ID --> Product
-	
+//	private Map<String, Long> prodNameToId = null;
+	private Map<String, Long> catNameToId = null;
 															   // Product(
 	
 	//////////////////////////////// STATIC  START ////////////////////////////////////////
@@ -48,10 +49,12 @@ public class Catalog {
 		catalogMap = new HashMap<Long, List<Long>>();  
 		categoryMap = new HashMap<Long, Category>();
 		productMap = new HashMap<Long, Product>();
+		catNameToId = new HashMap<String, Long>();
 		
 		// initalize productMap
 		for(Product prod : prodList) {
 			productMap.put(prod.getId(), prod);
+//			prodNameToId.put(prod.getName(), prod.getId());
 		}
 		
 		// initialize categoryMap
@@ -59,6 +62,7 @@ public class Catalog {
 			
 			long categoryID = categ.getId();
 			categoryMap.put(categoryID, categ);
+			catNameToId.put(categ.getName(), categ.getId());
 	
 //			// initalize CatalogMap
 			if (catalogMap.containsKey(categoryID)) { // if the category is in the catalog append to the list
@@ -70,8 +74,8 @@ public class Catalog {
 //				catalogMap.put(categoryID, new ArrayList<long>());
 			}
 		}
-		
 		//
+		
 	}
 	
 	public Collection<Category> getAllStoreCategories() {
@@ -94,8 +98,12 @@ public class Catalog {
 		return productList;
 	}
 	
+	public Category getCategoryByNane(String name) {
+		return categoryMap.get(catNameToId.get(name));
+	}
+	
 
-
+//
 
 	
 //	private void buildTheCatalogNavigation(Category currRoot) {
