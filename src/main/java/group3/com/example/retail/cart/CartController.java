@@ -32,6 +32,7 @@ public class CartController {
 		Cart cart = cartRepository.findByCustomerID(userID);
 		List<Product> productsInCart = cart.getCartProducts();
 		mnv.addObject("products", productsInCart);
+		mnv.addObject("totalPrice", cart.getTotalPrice());
 		return mnv;		
 	}
 

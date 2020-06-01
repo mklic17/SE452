@@ -23,7 +23,10 @@ public class Cart {
 
     public void addToTotalPrice(double newPrice) { this.totalPrice += newPrice; }
 
-    public void subtractFromTotalPrice(double priceToSubtract) { this.totalPrice -= priceToSubtract; }
+    public void subtractFromTotalPrice(double priceToSubtract) {
+        double tempPrice = this.totalPrice - priceToSubtract;
+        this.totalPrice = tempPrice < 0 ? 0 : tempPrice;
+    }
 
     public void insertCartItem(Product product) { cartProducts.add(product); }
 
