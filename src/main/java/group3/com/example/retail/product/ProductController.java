@@ -69,7 +69,7 @@ public class ProductController {
 	    mnv.addObject("product", productService.getProduct(prod.getId()));
 	    mnv.setViewName("product/show");
 	    return mnv;
-	  } //
+	  } 
 	
 	
 	@GetMapping("/edit/{Id}")  // GET  method for editing a product
@@ -82,32 +82,7 @@ public class ProductController {
 		mnv.addObject("button", "update"); 
 		return mnv;
 	}
-	
-	
-//	@PutMapping("/edit/submit")  // PUT method for editing a product
-//	public ModelAndView updateProduct(@Valid Product prod, BindingResult result) {
-//		ModelAndView mnv = new ModelAndView();
-//	    if(result.hasErrors()) {
-//	    	mnv.setViewName("product/newProductform");
-//			mnv.addObject("heading", "Edit Product");
-//			mnv.addObject("product", prod);	        
-//	        return mnv;
-//	    }		
-//	    productService.updateProduct(prod.getId(), prod);
-//	    mnv.setViewName("product/show");
-//	    mnv.addObject("product", productService.getProduct(prod.getId()));
-//	    return mnv;
-//	}
-	
-	
-	
-//	@GetMapping("/delete/{Id}")
-//	public ModelAndView deleteProduct(@PathVariable Long Id) {
-//		ModelAndView mnv = new ModelAndView();
-//		mnv.setViewName("product/delete")
-//		return mnv;
-//		
-//	}
+
 
 	
 	@GetMapping("/delete/{Id}")
@@ -122,37 +97,13 @@ public class ProductController {
 		return mnv;
 	}
 	
-	
-//	@DeleteMapping("/delete/submit")
-//	public ModelAndView deleteProduct(@Valid Product prod, BindingResult result) {
-//		ModelAndView mnv = new ModelAndView();
-//		mnv.
-//		return mnv;
-//
-//	}
+
 	
 	
 	private Collection<Category> getCategories() {
 		return Catalog.getCatalog().getAllStoreCategories();
 	}
 	
-		
-	
-	
-	
-	
-//	@RequestMapping(method=RequestMethod.PUT, value="/product/{id}")
-//	public String updateProduct(@PathVariable Long Id, Model model) {
-//         Product product = productService.getProduct(Id);
-//		 ProductForm productForm = productToProductForm.convert(product);
-//		 model.addAttribute("productForm", productForm);
-//		 return "product/productform";
-//	}
-//	
-//	@RequestMapping(method=RequestMethod.DELETE, value="/product/{id}")
-//	public String deleteProduct(@PathVariable Long Id) {
-//		productService.deleteProduct(Id);
-//		return "product/list";
-//	}
+
 
 }

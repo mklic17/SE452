@@ -14,8 +14,6 @@ import group3.com.example.retail.product.Product;
 // No Lombok, No Database, created at the start of the program and when maunally forced to rebuild
 public class Catalog {
 
-
-	
 	private static Catalog storefrontCatalog = null; // singleton Constructor	
 	
 	private Map<Long, List<Long>> catalogMap = null;      // Category ID (parent) --> List<Category Id's>  (children)
