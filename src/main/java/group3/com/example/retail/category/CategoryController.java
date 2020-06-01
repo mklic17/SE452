@@ -1,5 +1,6 @@
 package group3.com.example.retail.category;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -20,8 +21,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-
-
 
 
 @Controller
@@ -57,10 +56,12 @@ public class CategoryController {
 			parent = "Already a Root";
 		}
 		
-
 		mnv.addObject("parentCategory", parent);
 		mnv.addObject("category", curr);
 		mnv.addObject("products", curr.getProducts());
+		mnv.addObject("allProd", productService.getAllProducts());
+		ProductHolder temp = new ProductHolder(Id);
+		mnv.addObject("ProductHolder", temp); 
 		return mnv;
 	}
 	
@@ -89,31 +90,17 @@ public class CategoryController {
 	    return mnv;
 	}
 	
+	
 	@GetMapping("/edit/{Id}")
 	public ModelAndView editCategory(@PathVariable Long Id) {
 		ModelAndView mnv = new ModelAndView();
 		Category cat = categoryService.getCategory(Id);
-		// if exists
+		// if exists REVIEW
 		mnv.setViewName("category/newCategoryform");
 		mnv.addObject("category", cat);
 		return mnv;
 	}
 	
-//	@PutMapping("/edit/submit") 
-//	public ModelAndView updateCategory(@Valid Category cat, BindingResult result) {
-//		ModelAndView mnv = new ModelAndView();
-//		if(result.hasErrors()) {
-//			mnv.setViewName("category/editCategoryForm");
-//			mnv.addObject("category", cat);	  
-//			return mnv;
-//		}
-//		
-//		categoryService.updateCategory(cat.getId(), cat);
-//		mnv.setViewName("category/show");
-//		mnv.addObject("category", categoryService.getCategory(cat.getId()));
-//		
-//		return mnv;
-//	}
 	
 	@GetMapping("/delete/{Id}")
 	public ModelAndView deleteCategory(@PathVariable Long Id) {
@@ -121,7 +108,7 @@ public class CategoryController {
 		Category cat = categoryService.getCategory(Id);
 		if(cat != null) {
 			categoryService.deleteCategory(Id);
-		}		
+		}
 		mnv.setViewName("category/list");
 		mnv.addObject("categories", categoryService.getAllCategory());
 		return mnv;
@@ -129,14 +116,34 @@ public class CategoryController {
 	
 	
 	@PostMapping("/addProductAssignment")
-	public ModelAndView postProductAssignment(Category cat) {
+	public String postProductAssignment(@Valid ProductHolder prodHold) {
 		ModelAndView mnv = new ModelAndView();
-		mnv.setViewName("category/show/");
-		
-		return mnv;
+		// if result.hasError REVIEW
+		Product p = productService.getProduct(prodHold.getTheProduct());
+		Long catId = prodHold.getCategoryId();
+		Category curr = categoryService.getCategory(catId);
+		curr.addToproducts(p);
+		categoryService.updateCategory(catId, curr);
+		return "redirect:/category/" + prodHold.getCategoryId();
 	}
 	
+	
+	@GetMapping("/deleteProduct/{catId}/{prodId}")
+	public String deleteProductAssignment(@PathVariable("prodId") Long prodId, @PathVariable("catId") Long catId) {
+		System.out.println("Inside the DELETE");
+		System.out.println("The productId" + prodId);
+		System.out.println("The caategoryId" + catId);
 
+//		
+		Category curr = categoryService.getCategory(catId);
+		Product prod = productService.getProduct(prodId);
+		curr.removeProductAssignment(prod);
+		categoryService.updateCategory(curr.getId(), curr);
+//
+		return "redirect:/category/" + catId;
+	}
+	
+	
 	public String getNameFromID(Long Id) {
 		return categoryService.getCategory(Id).getName();
 	}
