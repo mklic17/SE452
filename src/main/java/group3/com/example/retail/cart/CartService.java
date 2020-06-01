@@ -4,10 +4,7 @@ import group3.com.example.retail.product.Product;
 import group3.com.example.retail.product.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import group3.com.example.retail.product.ProductRepository;
 import lombok.Data;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,21 +26,40 @@ public class CartService {
         return cartList;
     }
 
-    public void addProductToCart(long productId, String userId) {
-        // get user's cart with userId
-//        Cart cart = cartRepository.findById(userId);
-        // get the product with productId and its price
-        // double productPrice = productRepository.findById(productId).getPrice();
-       // cart.addToTotalPrice(productPrice);
-//        cartRepository.save(cart);
+    public void addProductToCart(long productID, long userID) {
+        // get user's cart object with userID,
+        // if there is no user cart yet, make one
+        Cart cart = cartRepository.findById(userID).orElseGet(() -> {
+            Cart newCart = new Cart();
+            newCart.setCustomerID(userID);
+            newCart.setCartProducts(new ArrayList<>());
+            return cartRepository.save(newCart);
+        });
+
+        // get the product object with productID
+        Product product = productRepository.findById(productID);
+        double productPrice = product.getPrice();
+        cart.addToTotalPrice(productPrice);
+        cart.insertCartItem(product);
+        cartRepository.save(cart);
     }
 
-    public void removeProductFromCart(long productId, String userId) {
+    public void removeProductFromCart(long productID, long userID) {
         // get user's cart with userId
-//        Cart cart = cartRepository.findById(userId);
+        // TODO: change this orElse()
+        Cart cart = cartRepository.findById(userID).orElse(null);
         // get the product with productId and its price
-        // double productPrice = productRepository.findById(productId).getPrice();
-        // cart.subtractFromTotalPrice(productPrice);
-//        cartRepository.save(cart);
+        Product product = productRepository.findById(productID);
+        double productPrice = product.getPrice();
+        cart.subtractFromTotalPrice(productPrice);
+        cart.removeCartItem(productID);
+        cartRepository.save(cart);
+    }
+
+    public void clearCart(long userID) {
+        Cart cart = cartRepository.findByCustomerID(userID);
+        cart.getCartProducts().clear();
+        cart.setTotalPrice(0);
+        cartRepository.save(cart);
     }
 }

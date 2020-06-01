@@ -68,35 +68,35 @@ CREATE TABLE Products_In_Category (
  	primary key (id)
  	);
 
-
  CREATE TABLE Customer (
-
- 	ID VARCHAR(18),
-	firstName VARCHAR(20) NOT NULL,
-	lastName VARCHAR(20) NOT NULL,
+ 	ID SERIAL,
+ 	username VARCHAR(20) NOT NULL,
+	first_name VARCHAR(20) NOT NULL,
+	last_name VARCHAR(20) NOT NULL,
 	email VARCHAR(50),
 
 	CONSTRAINT uniqueEmail UNIQUE(email),
-	PRIMARY KEY (Id)
+	PRIMARY KEY (ID)
 );
 
 
  CREATE TABLE Cart (
-    cart_ID serial,
-    customer_ID VARCHAR(18),
+    cart_ID SERIAL,
+    customer_ID SERIAL,
     total_price VARCHAR(18),
 
     PRIMARY KEY (cart_ID),
-    FOREIGN KEY (customer_ID) REFERENCES customer(ID)
+    FOREIGN KEY (customer_ID) REFERENCES Customer(ID)
 );
 
  CREATE TABLE Cart_Products (
-    cart_ID serial,
-    product_ID serial,
+    cart_ID SERIAL,
+    product_ID SERIAL,
 
     FOREIGN KEY (cart_ID) REFERENCES Cart(cart_ID),
     FOREIGN KEY (product_ID) REFERENCES Product(ID)
 );
+<<<<<<< HEAD
 
 
 -- CREATE TABLE Customer (
@@ -129,3 +129,5 @@ CREATE TABLE Products_In_Category (
 --     FOREIGN KEY (productID) REFERENCES Product(ID),
 --     PRIMARY KEY (ID)
 -- );
+=======
+>>>>>>> f39105aed90b1a10082983254d06ac43f59863c8
