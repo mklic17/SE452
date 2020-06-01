@@ -32,11 +32,13 @@ public class Refund {
 	private String ordernumber; 
 	private String productname;
 	
-	@Type(type = "jsonb")
-    @Column(columnDefinition = "jsonb")
-    @Basic(fetch = FetchType.LAZY)
-	private Reason reason;
-//	private String reason;
+//	@Type(type = "jsonb")
+//    @Column(columnDefinition = "jsonb")
+//    @Basic(fetch = FetchType.LAZY)
+//	private Reason reason;
+	
+	
+	private String reason;
 //	private String other;
 	
 	
