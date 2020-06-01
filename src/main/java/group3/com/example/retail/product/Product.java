@@ -6,22 +6,20 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
-
 import javax.persistence.*;
-
-import org.hibernate.annotations.Type;
-import org.hibernate.annotations.TypeDef;
-import org.hibernate.annotations.TypeDefs;
-
 import group3.com.example.retail.cart.Cart;
 import group3.com.example.retail.category.Category;
 import lombok.Data;
+
 import lombok.Getter;
 import lombok.ToString;
 import lombok.ToString.Exclude;
 
 import com.vladmihalcea.hibernate.type.basic.PostgreSQLHStoreType;
+
 
 @Data
 @Entity
@@ -55,10 +53,8 @@ public class Product implements Serializable {
     private String image;
     
 
-   
     @ManyToMany(mappedBy = "cartProducts", fetch = FetchType.EAGER)
-    private Set<Cart> cartAssignments;
-    
+    private List<Cart> cartAssignments = new ArrayList<>();
  
     @Exclude
     @ManyToMany (mappedBy = "products", fetch = FetchType.EAGER)
