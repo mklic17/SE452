@@ -44,8 +44,8 @@ INSERT INTO Products_In_Category(product_ID, category_ID) VALUES((SELECT ID FROM
 
 --INSERT INTO Cart (customer_ID, total_price) VALUES ('aaaaa', '0');
 
-INSERT INTO Cart (customer_ID, total_price) VALUES (1, '0');
-INSERT INTO Cart (customer_ID, total_price) VALUES (2, '0');
+--INSERT INTO Cart (customer_ID, total_price) VALUES (1, '0');
+--INSERT INTO Cart (customer_ID, total_price) VALUES (2, '0');
 
 -- Add some products to some carts
 --INSERT INTO Cart_Products (cart_ID, product_ID) VALUES (1, 1);
