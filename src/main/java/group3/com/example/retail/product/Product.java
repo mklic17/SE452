@@ -8,6 +8,11 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 
+
+import java.util.HashSet;
+import java.util.List;
+
+
 import java.util.HashSet;
 import java.util.List;
 
@@ -58,7 +63,7 @@ public class Product implements Serializable {
 
 
     @ManyToMany(mappedBy = "cartProducts", fetch = FetchType.EAGER)
-    private Set<Cart> cartAssignments;
+    private List<Cart> cartAssignments= new ArrayList<>();
  
     @Exclude
     @ManyToMany (mappedBy = "products", fetch = FetchType.EAGER)

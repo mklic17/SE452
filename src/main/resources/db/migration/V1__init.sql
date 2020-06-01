@@ -60,7 +60,6 @@ CREATE TABLE Products_In_Category (
 
 
  CREATE TABLE Review (
-
  	ID serial,
  	productid VARCHAR(18),
  	userid varchar(18),
@@ -97,37 +96,4 @@ CREATE TABLE Products_In_Category (
     FOREIGN KEY (cart_ID) REFERENCES Cart(cart_ID),
     FOREIGN KEY (product_ID) REFERENCES Product(ID)
 );
-
-
-
--- CREATE TABLE Customer (
---     ID VARCHAR(18),
---     firstName VARCHAR(20) NOT NULL,
---     lastName VARCHAR(20) NOT NULL,
---     email VARCHAR(50),
---
---     CONSTRAINT uniqueEmail UNIQUE(email),
---     PRIMARY KEY (Id)
--- );
---
--- CREATE TABLE Orders (
---     ID VARCHAR(18),
---     customerID VARCHAR(18) NOT NULL,
---     datePlaced TIMESTAMP NOT NULL,
---     status varchar(20),
---
---     FOREIGN KEY (customerID) REFERENCES Customer(ID),
---     PRIMARY KEY (Id)
--- );
---
--- CREATE TABLE OrderItems (
---     ID varchar(18),
---     orderId varchar(18) NOT NULL,
---     productID varchar(18) NOT NULL,
---     productTotal money,
---
---     FOREIGN KEY (orderID) REFERENCES Orders(ID),
---     FOREIGN KEY (productID) REFERENCES Product(ID),
---     PRIMARY KEY (ID)
--- );
 
