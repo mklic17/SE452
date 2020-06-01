@@ -33,6 +33,7 @@ INSERT INTO Products_In_Category(product_ID, category_ID) VALUES((SELECT ID FROM
 INSERT INTO Products_In_Category(product_ID, category_ID) VALUES((SELECT ID FROM Product WHERE Name = 'Golf Clubs'), (SELECT ID FROM Category WHERE Name = 'Golf'));
 
 
+
 -- Customer
 INSERT INTO Customer (username, first_name, last_name, email) VALUES ('clax', 'Tom', 'Claxton', 'email@example.com');
 INSERT INTO Customer (username, first_name, last_name, email) VALUES ('aaaaa', 'Michael', 'Scott',  'mscott@dundermifflin.com');
@@ -40,17 +41,69 @@ INSERT INTO Customer (username, first_name, last_name, email) VALUES ('aaaab', '
 INSERT INTO Customer (username, first_name, last_name, email) VALUES ('aaaac', 'Jim', 'Halpert',  'jhalpert@dundermifflin.com');
 
 -- Cart
-INSERT INTO Cart (customer_ID, total_price) VALUES (1, '0');
-INSERT INTO Cart (customer_ID, total_price) VALUES (2, '0');
+
+--INSERT INTO Cart (customer_ID, total_price) VALUES ('aaaaa', '0');
+
+--INSERT INTO Cart (customer_ID, total_price) VALUES (1, '0');
+--INSERT INTO Cart (customer_ID, total_price) VALUES (2, '0');
 
 -- Add some products to some carts
-INSERT INTO Cart_Products (cart_ID, product_ID) VALUES (1, 1);
-INSERT INTO Cart_Products (cart_ID, product_ID) VALUES (1, 2);
-INSERT INTO Cart_Products (cart_ID, product_ID) VALUES (1, 3);
-INSERT INTO Cart_Products (cart_ID, product_ID) VALUES (2, 4);
+--INSERT INTO Cart_Products (cart_ID, product_ID) VALUES (1, 1);
+--INSERT INTO Cart_Products (cart_ID, product_ID) VALUES (1, 2);
+--INSERT INTO Cart_Products (cart_ID, product_ID) VALUES (1, 3);
+--INSERT INTO Cart_Products (cart_ID, product_ID) VALUES (2, 4);
 
-INSERT INTO Orders (ID, datePlaced, productID, productname, price)  VALUES ('1', now(), 'bb', 'Soccer Ball', '29.99');
-INSERT INTO Orders (ID, datePlaced, productID, productname, price)  VALUES ('2345', now(), 'ab', 'Baseball Bat', '50.00');
-INSERT INTO Orders (ID, datePlaced, productID, productname, price)  VALUES ('3546465', now(), 'cb', 'Golf Clubs', '399.99');
-INSERT INTO Orders (ID, datePlaced, productID, productname, price)  VALUES ('4676', now(), 'db', 'Baseball Bat and Soccer Ball', '79.99');
-INSERT INTO Orders (ID, datePlaced, productID, productname, price)  VALUES ('544324', now(), 'eb', 'Golf Clubs', '399.99');
+
+--INSERT INTO Orders (ID, datePlaced, productID, productname, price)  VALUES ('1', now(), 'bb', 'Soccer Ball', '29.99');
+--INSERT INTO Orders (ID, datePlaced, productID, productname, price)  VALUES ('2345', now(), 'ab', 'Baseball Bat', '50.00');
+--INSERT INTO Orders (ID, datePlaced, productID, productname, price)  VALUES ('3546465', now(), 'cb', 'Golf Clubs', '399.99');
+--INSERT INTO Orders (ID, datePlaced, productID, productname, price)  VALUES ('4676', now(), 'db', 'Baseball Bat and Soccer Ball', '79.99');
+--INSERT INTO Orders (ID, datePlaced, productID, productname, price)  VALUES ('544324', now(), 'eb', 'Golf Clubs', '399.99');
+
+-- -- Customer
+-- INSERT INTO Customer (username, first_name, last_name, email) VALUES ('clax', 'Tom', 'Claxton', 'email@example.com');
+-- INSERT INTO Customer (username, first_name, last_name, email) VALUES ('aaaaa', 'Michael', 'Scott',  'mscott@dundermifflin.com');
+-- INSERT INTO Customer (username, first_name, last_name, email) VALUES ('aaaab', 'Dwight', 'Schrute',  'dschture@dundermifflin.com');
+-- INSERT INTO Customer (username, first_name, last_name, email) VALUES ('aaaac', 'Jim', 'Halpert',  'jhalpert@dundermifflin.com');
+--
+-- -- Cart
+--
+-- -- INSERT INTO Cart (customer_ID, total_price) VALUES ('aaaaa', '0');
+--
+-- INSERT INTO Cart (customer_ID, total_price) VALUES ((SELECT ID FROM Customer WHERE email = 'email@example.com'), '0');
+-- INSERT INTO Cart (customer_ID, total_price) VALUES ((SELECT ID FROM Customer WHERE email = 'mscott@dundermifflin.com'), '0');
+--
+-- -- Add some products to some carts
+-- INSERT INTO Cart_Products (cart_ID, product_ID) VALUES (1, 1);
+-- INSERT INTO Cart_Products (cart_ID, product_ID) VALUES (1, 2);
+-- INSERT INTO Cart_Products (cart_ID, product_ID) VALUES (1, 3);
+-- INSERT INTO Cart_Products (cart_ID, product_ID) VALUES (2, 4);
+
+-- 
+-- INSERT INTO Orders (ID, datePlaced, productID, productname, price)  VALUES ('1', now(), 'bb', 'Soccer Ball', '29.99');
+-- INSERT INTO Orders (ID, datePlaced, productID, productname, price)  VALUES ('2345', now(), 'ab', 'Baseball Bat', '50.00');
+-- INSERT INTO Orders (ID, datePlaced, productID, productname, price)  VALUES ('3546465', now(), 'cb', 'Golf Clubs', '399.99');
+-- INSERT INTO Orders (ID, datePlaced, productID, productname, price)  VALUES ('4676', now(), 'db', 'Baseball Bat and Soccer Ball', '79.99');
+-- INSERT INTO Orders (ID, datePlaced, productID, productname, price)  VALUES ('544324', now(), 'eb', 'Golf Clubs', '399.99');
+
+
+
+--
+--
+-- -- Order and OrderItems
+-- INSERT INTO Orders (ID, customerID, datePlaced)  VALUES ('000001', 'aaaaa', now());
+-- INSERT INTO OrderItems (Id, orderID, productID, productTotal) VALUES ('aiodsfjsd', '000001', '000004', 399.99);
+-- INSERT INTO OrderItems (Id, orderID, productID, productTotal) VALUES ('flkflasjf', '000001', '000002', 29.99);
+-- INSERT INTO OrderItems (Id, orderID, productID, productTotal) VALUES ('gadsgd', '000001', '000001', 50.00);
+--
+-- INSERT INTO Orders (ID, customerID, datePlaced)  VALUES ('000002', 'aaaaa', now());
+-- INSERT INTO OrderItems (Id, orderID, productID, productTotal) VALUES ('afhfdd', '000002', '000003', 19.99);
+-- INSERT INTO OrderItems (Id, orderID, productID, productTotal) VALUES ('hererhe', '000002', '000004', 399.99);
+--
+-- INSERT INTO Orders (ID, customerID, datePlaced)  VALUES ('000003', 'aaaab', now());
+-- INSERT INTO OrderItems (Id, orderID, productID, productTotal) VALUES ('gassgsd', '000003', '000003', 19.99);
+-- INSERT INTO OrderItems (Id, orderID, productID, productTotal) VALUES ('hererhe', '000003', '000001', 50.00);
+--
+-- INSERT INTO Orders (ID, customerID, datePlaced)  VALUES ('000004', 'aaaac', now());
+-- INSERT INTO OrderItems (Id, orderID, productID, productTotal) VALUES ('dsglkdsg', '000004', '000002', 29.99);
+

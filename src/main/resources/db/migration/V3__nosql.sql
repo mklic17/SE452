@@ -1,1 +1,0 @@
-alter table refund add reason jsonb;

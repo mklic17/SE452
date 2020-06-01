@@ -30,11 +30,11 @@ CREATE TABLE Category (
 );
 
 CREATE TABLE Products_In_Category (
-    ID SERIAL, -- Is this needed?
+    -- ID SERIAL, -- Is this needed?
     product_ID SERIAL, -- productID
     category_ID SERIAL,
 
-    PRIMARY KEY (Id),
+    -- PRIMARY KEY (Id),
     FOREIGN KEY (product_ID) REFERENCES Product(ID),
     FOREIGN KEY (category_ID) REFERENCES Category(ID)
 );
@@ -53,13 +53,13 @@ CREATE TABLE Products_In_Category (
  	RefundID SERIAL,
  	ordernumber VARCHAR(18),
  	ProductName VARChAR(30),
+ 	reason VARCHAR(500),
 
  	PRIMARY KEY (RefundID)
  	);
 
 
  CREATE TABLE Review (
-
  	ID serial,
  	productid VARCHAR(18),
  	userid varchar(18),
@@ -96,3 +96,4 @@ CREATE TABLE Products_In_Category (
     FOREIGN KEY (cart_ID) REFERENCES Cart(cart_ID),
     FOREIGN KEY (product_ID) REFERENCES Product(ID)
 );
+

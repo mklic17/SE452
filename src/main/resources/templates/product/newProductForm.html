@@ -1,33 +1,22 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Spring Core Online Tutorial - Product Form</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 
-    <link href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css"
-          th:href="@{/webjars/bootstrap/3.3.5/css/bootstrap.min.css}"
-          rel="stylesheet" media="screen"/>
+<head th:insert="fragments/header :: header"></head>
+<head><title>New Product</title></head>
 
-    <!-- <script src="http://cdn.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"
-            th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script> -->
-
-    <!-- <link href="../../static/css/spring-core.css"
-          th:href="@{css/spring-core.css}" rel="stylesheet" media="screen"/> -->
-</head>
 <body>
+    <nav th:replace="fragments/adminNavbar :: admin-navigation"></nav>
+
 <div class="container">
-
-    <h2>Product Details</h2>
+    <h2 th:text="${heading}"></h2>
     <div>
-        <form class="form-group" action="#" th:action="@{/product/create}" th:object="${product}" method="POST">
-
+        <form class="form-horizontal" th:action="@{/product/create}" th:object="${product}" method="POST">
 
             <div th:if="${#fields.hasErrors('*')}" class="alert alert-danger">
                 <p th:text="#{form.hasErrors}">Error Message</p>
             </div>
 
             <input type="hidden" th:field="*{Id}"/>
-
 
 <!-- Name START -->
             <div class="form-group row"th:class="${#fields.hasErrors('name')} ? 'form-group has-error' : 'form-group'">
@@ -47,7 +36,7 @@
             <div class="form-group" th:class="${#fields.hasErrors('price')} ? 'form-group has-error' : 'form-group'">
                 <label class="col-sm-2 control-label">Price:</label>
                 <div class="col-sm-10">
-                    <input type="number" min="0" max="5000" step="0.01" class="form-control" th:field="*{price}" th:errorclass="has-error"/>
+                    <input type="number" min="0" max="9999999" step="0.01" class="form-control" th:field="*{price}" th:errorclass="has-error"/>
 
                     <span class="help-block">
                        <ul>
@@ -73,21 +62,6 @@
 <!-- Summary END -->
 
 
-<!-- image Start -->
-            <div class="form-group" th:class="${#fields.hasErrors('image')} ? 'form-group has-error' : 'form-group'">
-                <label class="col-sm-2 control-label">Image:</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" th:field="*{image}" th:errorclass="has-error"/>
-                </div>
-                    <span class="help-block">
-                       <ul>
-                           <li th:each="err : ${#fields.errors('image')}" th:text="${err}" />
-                       </ul>
-                    </span>
-            </div>
-<!-- image END -->
-
-
 <!-- Description Start -->
             <div class="form-group" th:class="${#fields.hasErrors('description')} ? 'form-group has-error' : 'form-group'">
                 <label class="col-sm-2 control-label">Description:</label>
@@ -103,31 +77,23 @@
 <!-- Description END -->
 
 
-            <!-- Catalog assignments -->
-            <!-- <select th:field="*{profile}">
-                <option th:each="profile : ${allProfiles}" th:value="${profile}" th:text="${profile}">Profile</option>
-            </select>
+<!-- image Start -->
+            <div class="form-group" th:class="${#fields.hasErrors('image')} ? 'form-group has-error' : 'form-group'">
+                <label class="col-sm-2 control-label">Image:</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" th:field="*{image}" th:errorclass="has-error"/>
+                </div>
+                    <span class="help-block">
+                       <ul>
+                           <li th:each="err : ${#fields.errors('image')}" th:text="${err}" />
+                       </ul>
+                    </span>
+            </div>
+<!-- image END -->
 
-             <div class="form-group">
-                <h4>Categories</h4>
-                <table class="table table-striped">
-                <tr>
-                    <th>Id</th>
-                    <th>Name</th>
-                    <th>Parent</th>
-                </tr>
-                <tr th:each="cat : ${allCategories}">
-                    <td th:text="${cat.id}"></td>
-                    <td th:text="${cat.name}"></td>
-                    <td th:text="${category.}"></td>
-
-                </tr>
-            </table>
-
-        </div> -->
 
             <div class="row">
-                <button type="submit" class="btn btn-default">Submit</button>
+                <button type="submit" class="btn btn-success createProduct" th:text="${button}"></button>
             </div>
         </form>
     </div>

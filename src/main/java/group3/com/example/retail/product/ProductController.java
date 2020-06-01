@@ -14,7 +14,6 @@ import org.springframework.web.servlet.ModelAndView;
 import group3.com.example.retail.catalog.Catalog;
 import group3.com.example.retail.category.Category;
 
-
 @Controller
 @RequestMapping({"product"})    // SET TO BE THE MAIN
 public class ProductController {
@@ -25,7 +24,6 @@ public class ProductController {
 	@Autowired
 	private CartService cartService;
 
-	
 	@GetMapping({"", "/", "/home"}) // Return all Products
 	public ModelAndView getAllProducts() { 
 		ModelAndView mnv = new ModelAndView();
@@ -34,7 +32,6 @@ public class ProductController {
 		return mnv;
     }
 	
-	
 	@GetMapping("/{Id}") // Returns a single product
 	public ModelAndView getProduct(@PathVariable Long Id) {  
 		ModelAndView mnv = new ModelAndView();
@@ -42,23 +39,24 @@ public class ProductController {
 		mnv.addObject("product", productService.getProduct(Id));
         return mnv;
 	}
-	
-//
+
 	@GetMapping({"/new"})
 	public ModelAndView addProduct() {  // Adds a product to the DB with new values
 		ModelAndView mnv = new ModelAndView();
 		mnv.setViewName("product/newProductform");
 		mnv.addObject("product", new Product());
+		mnv.addObject("heading", "New Product");
 		mnv.addObject("allCategories", getCategories()); 
+		mnv.addObject("button", "create"); 
 		return mnv;
 	}
-	
 	
 	@PostMapping("/create") // POST mapping for new product
 	  public ModelAndView createProduct(@Valid Product prod, BindingResult result) {  
 		ModelAndView mnv = new ModelAndView();
 	    if(result.hasErrors()) {
 			mnv.setViewName("product/newProductform");
+			mnv.addObject("heading", "New Product");
 	        mnv.addObject("product", prod);
 //	        mnv.addObject("categories", getCategories());
 	        return mnv;
@@ -67,70 +65,30 @@ public class ProductController {
 	    mnv.addObject("product", productService.getProduct(prod.getId()));
 	    mnv.setViewName("product/show");
 	    return mnv;
-	  }
-	
+	  } 
 	
 	@GetMapping("/edit/{Id}")  // GET  method for editing a product
 	public ModelAndView editProduct(@PathVariable Long Id) {
 		ModelAndView mnv = new ModelAndView();
-		Product prod= productService.getProduct(Id);
+		Product prod = productService.getProduct(Id);
 		mnv.setViewName("product/newProductform");
+		mnv.addObject("heading", "Edit Product");
 		mnv.addObject("product", prod);
-//		mav.addObject("category", getCategories()); 
+		mnv.addObject("button", "update"); 
 		return mnv;
 	}
-	
-	
-	@PutMapping("/edit/submit")  // PUT method for editing a product
-	public ModelAndView updateProduct(@Valid Product prod, BindingResult result) {
-		ModelAndView mnv = new ModelAndView();
-	    if(result.hasErrors()) {
-			mnv.setViewName("product/editProductform");
-	        mnv.addObject("product", prod);
-	        mnv.addObject("allCategories", getCategories());
-	        return mnv;
-	    }		
-	    productService.updateProduct(prod.getId(), prod);
-	    
-	    mnv.addObject("product", productService.getProduct(prod.getId()));
-	    mnv.setViewName("product/show");
-	    return mnv;
-	}
-	
-	
-	
-//	@GetMapping("/delete/{Id}")
-//	public ModelAndView deleteProduct(@PathVariable Long Id) {
-//		ModelAndView mnv = new ModelAndView();
-//		mnv.setViewName("product/delete")
-//		return mnv;
-//		
-//	}
-
 	
 	@GetMapping("/delete/{Id}")
 	public ModelAndView deleteProduct(@PathVariable Long Id) {
 		ModelAndView mnv = new ModelAndView();
-		mnv.setViewName("product/delete");
-		mnv.addObject("product", productService.getProduct(Id));
-//		productService.deleteProduct(prod.getId());
+		Product prod = productService.getProduct(Id);		
+		if (prod != null) {
+			productService.deleteProduct(Id);
+		}
+		mnv.setViewName("product/list");
+		mnv.addObject("products", productService.getAllProducts());
 		return mnv;
-	}
-	
-	
-//	@DeleteMapping("/delete/submit")
-//	public ModelAndView deleteProduct(@Valid Product prod, BindingResult result) {
-//		ModelAndView mnv = new ModelAndView();
-//		mnv.
-//		return mnv;
-//
-//	}
-//	@PostMapping("/addToCart")
-//	public void addToCart(Integer id) {
-//		System.out.println("Hi");
-//		System.out.println(id);
-//		cartService.addProductToCart(product.getId(), 1);
-//	}
+  }
 
 	@PostMapping("/addToCart/{productId}")
 	public String addToCart(@PathVariable Long productId) {
@@ -143,28 +101,7 @@ public class ProductController {
 		return "redirect:/product/{productId}";
 	}
 	
-	
 	private Collection<Category> getCategories() {
 		return Catalog.getCatalog().getAllStoreCategories();
 	}
-	
-		
-	
-	
-	
-	
-//	@RequestMapping(method=RequestMethod.PUT, value="/product/{id}")
-//	public String updateProduct(@PathVariable Long Id, Model model) {
-//         Product product = productService.getProduct(Id);
-//		 ProductForm productForm = productToProductForm.convert(product);
-//		 model.addAttribute("productForm", productForm);
-//		 return "product/productform";
-//	}
-//	
-//	@RequestMapping(method=RequestMethod.DELETE, value="/product/{id}")
-//	public String deleteProduct(@PathVariable Long Id) {
-//		productService.deleteProduct(Id);
-//		return "product/list";
-//	}
-
 }
