@@ -42,8 +42,6 @@ INSERT INTO Customer (ID, firstName, lastName, email) VALUES ('aaaac', 'Jim', 'H
 -- Cart
 INSERT INTO Cart (customer_ID, total_price) VALUES ('aaaaa', '0');
 
-
-
 INSERT INTO Orders (ID, datePlaced, productID, productname, price)  VALUES ('1', now(), 'bb', 'Soccer Ball', '29.99');
 INSERT INTO Orders (ID, datePlaced, productID, productname, price)  VALUES ('2345', now(), 'ab', 'Baseball Bat', '50.00');
 INSERT INTO Orders (ID, datePlaced, productID, productname, price)  VALUES ('3546465', now(), 'cb', 'Golf Clubs', '399.99');

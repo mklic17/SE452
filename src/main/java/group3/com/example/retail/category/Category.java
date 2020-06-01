@@ -77,10 +77,15 @@ public class Category implements Serializable{
 		products.add(prod);
 	}
 	
-	//
+	public void removeProductAssignment(Product prod) {
+		if(products.contains(prod)) {
+			products.remove(prod);
+		}
+	}
+	
+	
 // https://codepumpkin.com/hashset-internal-implementation/
 // Suggests to override equals and hashCode method when implementing with custom obj
-	
 	public boolean equals(Object thatObject) {
 		if (thatObject == this) {
 			return true;
@@ -115,5 +120,4 @@ public class Category implements Serializable{
 	  }
 
 }
-
 

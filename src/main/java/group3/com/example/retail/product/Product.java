@@ -16,7 +16,6 @@ import org.hibernate.annotations.TypeDefs;
 
 import group3.com.example.retail.cart.Cart;
 import group3.com.example.retail.category.Category;
-import group3.com.example.retail.category.Transient;
 import lombok.Data;
 import lombok.Getter;
 import lombok.ToString;
@@ -89,15 +88,15 @@ public class Product implements Serializable {
 	  @Transient 
 	  private int theHashCode = 0;
 	  public int hashCode() {
-		if(theHashCode == 0) {
-			theHashCode = 17;
-			theHashCode = theHashCode * 37 + this.Id.hashCode();
-			theHashCode = theHashCode * 37 + this.name.hashCode(); 
-			theHashCode = theHashCode * 37 + this.summary.hashCode();
-			theHashCode = theHashCode * 37 + this.description.hashCode();
-			theHashCode = theHashCode * 37 + this.image.hashCode();
-		}
-		return theHashCode;
+		  if(theHashCode == 0) {
+			  theHashCode = 17;
+			  theHashCode = theHashCode * 37 + this.Id.hashCode();
+			  theHashCode = theHashCode * 37 + this.name.hashCode(); 
+			  theHashCode = theHashCode * 37 + this.summary.hashCode();
+			  theHashCode = theHashCode * 37 + this.description.hashCode();
+			  theHashCode = theHashCode * 37 + this.image.hashCode();
+		  }
+		  return theHashCode;
 	  }
     
 }

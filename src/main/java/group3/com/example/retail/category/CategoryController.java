@@ -62,7 +62,6 @@ public class CategoryController {
 		mnv.addObject("allProd", productService.getAllProducts());
 		ProductHolder temp = new ProductHolder(Id);
 		mnv.addObject("ProductHolder", temp); 
-		System.out.println("CategoryID IN GET: " + temp.getCategoryId());
 		return mnv;
 	}
 	
@@ -96,7 +95,7 @@ public class CategoryController {
 	public ModelAndView editCategory(@PathVariable Long Id) {
 		ModelAndView mnv = new ModelAndView();
 		Category cat = categoryService.getCategory(Id);
-		// if exists
+		// if exists REVIEW
 		mnv.setViewName("category/newCategoryform");
 		mnv.addObject("category", cat);
 		return mnv;
@@ -119,10 +118,7 @@ public class CategoryController {
 	@PostMapping("/addProductAssignment")
 	public String postProductAssignment(@Valid ProductHolder prodHold) {
 		ModelAndView mnv = new ModelAndView();
-		// if result.hasError
-		System.out.println("Category ID: " + prodHold.getCategoryId());
-		System.out.println("Product ID: " + prodHold.getTheProduct());
-
+		// if result.hasError REVIEW
 		Product p = productService.getProduct(prodHold.getTheProduct());
 		Long catId = prodHold.getCategoryId();
 		Category curr = categoryService.getCategory(catId);
@@ -131,11 +127,20 @@ public class CategoryController {
 		return "redirect:/category/" + prodHold.getCategoryId();
 	}
 	
-	@GetMapping("/deleteProduct/{Id}")
-	public String deleteProductAssignment(@PathVariable Long Id) {
-		categoryService.getCategory(Id);
-		
-		return "redirect:/category/";
+	
+	@GetMapping("/deleteProduct/{catId}/{prodId}")
+	public String deleteProductAssignment(@PathVariable("prodId") Long prodId, @PathVariable("catId") Long catId) {
+		System.out.println("Inside the DELETE");
+		System.out.println("The productId" + prodId);
+		System.out.println("The caategoryId" + catId);
+
+//		
+		Category curr = categoryService.getCategory(catId);
+		Product prod = productService.getProduct(prodId);
+		curr.removeProductAssignment(prod);
+		categoryService.updateCategory(curr.getId(), curr);
+//
+		return "redirect:/category/" + catId;
 	}
 	
 	
