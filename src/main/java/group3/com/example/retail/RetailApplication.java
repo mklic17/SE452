@@ -22,6 +22,15 @@ public class RetailApplication {
 
 	private static final Logger log = LoggerFactory.getLogger(RetailApplication.class);
 
+	@Bean
+	public CommandLineRunner demoCart(CartRepository cartRepo, ProductRepository productRepo) {
+		return (args) -> {
+			// Get all Carts
+			cartRepo.findAll().forEach((cart) -> { System.out.println(cart.toString()); });
+
+			// Add item to a Cart
+		};
+	}
 
 	
 	public static void main(String[] args) {
