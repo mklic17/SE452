@@ -35,10 +35,10 @@ INSERT INTO Products_In_Category(product_ID, category_ID) VALUES((SELECT ID FROM
 
 
 -- Customer
---INSERT INTO Customer (username, first_name, last_name, email) VALUES ('clax', 'Tom', 'Claxton', 'email@example.com');
---INSERT INTO Customer (username, first_name, last_name, email) VALUES ('aaaaa', 'Michael', 'Scott',  'mscott@dundermifflin.com');
---INSERT INTO Customer (username, first_name, last_name, email) VALUES ('aaaab', 'Dwight', 'Schrute',  'dschture@dundermifflin.com');
---INSERT INTO Customer (username, first_name, last_name, email) VALUES ('aaaac', 'Jim', 'Halpert',  'jhalpert@dundermifflin.com');
+INSERT INTO Customer (username, first_name, last_name, email) VALUES ('clax', 'Tom', 'Claxton', 'email@example.com');
+INSERT INTO Customer (username, first_name, last_name, email) VALUES ('aaaaa', 'Michael', 'Scott',  'mscott@dundermifflin.com');
+INSERT INTO Customer (username, first_name, last_name, email) VALUES ('aaaab', 'Dwight', 'Schrute',  'dschture@dundermifflin.com');
+INSERT INTO Customer (username, first_name, last_name, email) VALUES ('aaaac', 'Jim', 'Halpert',  'jhalpert@dundermifflin.com');
 
 -- Cart
 
