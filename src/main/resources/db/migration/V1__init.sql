@@ -53,6 +53,7 @@ CREATE TABLE Products_In_Category (
  	RefundID SERIAL,
  	ordernumber VARCHAR(18),
  	ProductName VARChAR(30),
+ 	reason VARCHAR(500),
 
  	PRIMARY KEY (RefundID)
  	);
@@ -96,7 +97,7 @@ CREATE TABLE Products_In_Category (
     FOREIGN KEY (cart_ID) REFERENCES Cart(cart_ID),
     FOREIGN KEY (product_ID) REFERENCES Product(ID)
 );
-<<<<<<< HEAD
+
 
 
 -- CREATE TABLE Customer (
@@ -129,5 +130,4 @@ CREATE TABLE Products_In_Category (
 --     FOREIGN KEY (productID) REFERENCES Product(ID),
 --     PRIMARY KEY (ID)
 -- );
-=======
->>>>>>> f39105aed90b1a10082983254d06ac43f59863c8
+

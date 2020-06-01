@@ -20,7 +20,7 @@ import group3.com.example.retail.product.ProductRepository;
 @SpringBootApplication
 public class RetailApplication {
 
-	private static final Logger log = LoggerFactory.getLogger(RetailApplication.class);
+	//private static final Logger log = LoggerFactory.getLogger(RetailApplication.class);
 
 	@Bean
 	public CommandLineRunner demoCart(CartRepository cartRepo, ProductRepository productRepo) {
