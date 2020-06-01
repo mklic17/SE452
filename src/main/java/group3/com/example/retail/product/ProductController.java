@@ -3,20 +3,16 @@ package group3.com.example.retail.product;
 import javax.validation.Valid;
 
 import java.util.Collection;
+
+import group3.com.example.retail.cart.CartService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import group3.com.example.retail.catalog.Catalog;
 import group3.com.example.retail.category.Category;
-
 
 @Controller
 @RequestMapping({"product"})    // SET TO BE THE MAIN
@@ -25,7 +21,9 @@ public class ProductController {
 	@Autowired
 	private ProductService productService;
 
-	
+	@Autowired
+	private CartService cartService;
+
 	@GetMapping({"", "/", "/home"}) // Return all Products
 	public ModelAndView getAllProducts() { 
 		ModelAndView mnv = new ModelAndView();
@@ -34,7 +32,6 @@ public class ProductController {
 		return mnv;
     }
 	
-	
 	@GetMapping("/{Id}") // Returns a single product
 	public ModelAndView getProduct(@PathVariable Long Id) {  
 		ModelAndView mnv = new ModelAndView();
@@ -42,7 +39,6 @@ public class ProductController {
 		mnv.addObject("product", productService.getProduct(Id));
         return mnv;
 	}
-	
 
 	@GetMapping({"/new"})
 	public ModelAndView addProduct() {  // Adds a product to the DB with new values
@@ -71,7 +67,6 @@ public class ProductController {
 	    return mnv;
 	  } 
 	
-	
 	@GetMapping("/edit/{Id}")  // GET  method for editing a product
 	public ModelAndView editProduct(@PathVariable Long Id) {
 		ModelAndView mnv = new ModelAndView();
@@ -82,8 +77,6 @@ public class ProductController {
 		mnv.addObject("button", "update"); 
 		return mnv;
 	}
-
-
 	
 	@GetMapping("/delete/{Id}")
 	public ModelAndView deleteProduct(@PathVariable Long Id) {
@@ -95,15 +88,20 @@ public class ProductController {
 		mnv.setViewName("product/list");
 		mnv.addObject("products", productService.getAllProducts());
 		return mnv;
-	}
-	
+  }
 
-	
+	@PostMapping("/addToCart/{productId}")
+	public String addToCart(@PathVariable Long productId) {
+		System.out.println(productId);
+		// TODO: Remove hardcoded user ID
+		cartService.addProductToCart(productId, 1);
+		ModelAndView mnv = new ModelAndView();
+		mnv.setViewName("product/show");
+		mnv.addObject("product", productService.getProduct(productId));
+		return "redirect:/product/{productId}";
+	}
 	
 	private Collection<Category> getCategories() {
 		return Catalog.getCatalog().getAllStoreCategories();
 	}
-	
-
-
 }

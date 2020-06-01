@@ -51,7 +51,10 @@ public class CartService {
         // get the product with productId and its price
         Product product = productRepository.findById(productID);
         double productPrice = product.getPrice();
+        System.out.println(productPrice);
         cart.subtractFromTotalPrice(productPrice);
+        System.out.println(product.getPrice());
+        System.out.println(cart);
         cart.removeCartItem(productID);
         cartRepository.save(cart);
     }
