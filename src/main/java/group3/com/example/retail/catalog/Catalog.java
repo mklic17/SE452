@@ -36,10 +36,13 @@ public class Catalog {
 	}
 	
 	
-	public static void rebuildCatalog(List<Product> prodList, List<Category> catList) {
+	public static Catalog rebuildCatalog(List<Product> prodList, List<Category> catList) {
 		storefrontCatalog = null;
 		storefrontCatalog = new Catalog(prodList, catList);
+		return storefrontCatalog;
 	}
+		
+	
 	//////////////////////////////// STATIC STOP //////////////////////////////////////// 
 	
 	
@@ -98,8 +101,12 @@ public class Catalog {
 		return productList;
 	}
 	
-	public Category getCategoryByNane(String name) {
+	public Category getCategoryByName(String name) {
 		return categoryMap.get(catNameToId.get(name));
+	}
+	
+	public Product getProductById(Long prodId) {
+		return productMap.get(prodId);
 	}
 	
 

@@ -30,7 +30,7 @@
                             <tr>
                                 <td><h3>$<span th:text="${product.price}"></span></h3></td>
                                     <td>
-                                        <form th:action="@{|/product/addToCart/${product.id}|}" method="POST">
+                                        <form th:action="@{|/addToCart/${product.id}|}" method="POST">
                                             <input type="submit" class="btn btn-info" name="addToCart" value="Add to Cart" id="addToCart">
                                         </form>
                                     </td>

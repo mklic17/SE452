@@ -9,6 +9,7 @@ import javax.validation.Valid;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
+import group3.com.example.retail.catalog.CatalogController;
 import group3.com.example.retail.product.Product;
 import group3.com.example.retail.product.ProductService;
 
@@ -141,6 +142,16 @@ public class CategoryController {
 		categoryService.updateCategory(curr.getId(), curr);
 //
 		return "redirect:/category/" + catId;
+	}
+	
+	@GetMapping("/rebuild")
+	public ModelAndView rebuildIndex() {
+		ModelAndView mnv = new ModelAndView();
+		List<Product> allProducts = productService.getAllProducts();
+		List<Category> allCategory = categoryService.getAllCategory();
+		CatalogController.rebuildCatalog(allProducts, allCategory);
+		mnv.setViewName("admin/adminDashboard");
+		return mnv;
 	}
 	
 	
