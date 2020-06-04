@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:insert="fragments/header :: header"></head>
+<head><title>Product List</title></head>
+
+<body>
+
+    <!-- BootStrap template https://github.com/BlackrockDigital/startbootstrap-shop-homepage/blob/master/index.html  -->
+
+    <!-- Navigation -->
+    <nav th:replace="fragments/adminNavbar :: admin-navigation"></nav>
+
+    <div class="row justify-content-md-center">
+            <div class="col col-md-6 card">
+                <center><h3>Category Assignments</h3></center><br>
+                <h5>You cannot delete the <span th:text="${product.name}"></span> Product  because it is referenced in the following categories.</h5>
+                <table class="table table-striped">
+                    <tr>
+                        <th>Category ID</th>
+                        <th>Category Name</th>
+                        <th>View</th>
+                        <th>Remove</th>
+                    </tr>
+                    <tr th:each="cat : ${categories}">
+                        <td th:text="${cat.id}"></td>
+                        <td th:text="${cat.name}"></td>
+                        <td><a th:href="${'/category/' + cat.Id}">View</td>
+                        <td><a th:href="${'/category/deleteProduct/' + cat.Id + '/' + product.Id}">Remove</td>
+
+                    </tr>
+                </table>
+            </div>
+    </div>
+
+</body>
+</html>

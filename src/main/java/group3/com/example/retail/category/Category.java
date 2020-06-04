@@ -86,6 +86,7 @@ public class Category implements Serializable{
 	
 // https://codepumpkin.com/hashset-internal-implementation/
 // Suggests to override equals and hashCode method when implementing with custom obj
+	
 	public boolean equals(Object thatObject) {
 		if (thatObject == this) {
 			return true;
@@ -113,7 +114,11 @@ public class Category implements Serializable{
 			theHashCode = 17;
 			theHashCode = theHashCode * 37 + this.Id.hashCode();
 			theHashCode = theHashCode * 37 + this.name.hashCode();
-			theHashCode = theHashCode * 37 + this.parent.hashCode();
+			if (parent != null) {
+				theHashCode = theHashCode * 37 + this.parent.hashCode();
+			} else {
+				theHashCode = theHashCode * 37 + 0;
+			}
 			theHashCode = theHashCode * 37 + this.products.hashCode();
 		}
 		return theHashCode;

@@ -76,11 +76,15 @@ public class ProductController {
 	public ModelAndView deleteProduct(@PathVariable Long Id) {
 		ModelAndView mnv = new ModelAndView();
 		Product prod = productService.getProduct(Id);		
-		if (prod != null) {
+		if ((prod != null) && (prod.getCategoryAssignments().size() == 0)) {
 			productService.deleteProduct(Id);
+			mnv.setViewName("product/list");
+			mnv.addObject("products", productService.getAllProducts());
+			return mnv;
 		}
-		mnv.setViewName("product/list");
-		mnv.addObject("products", productService.getAllProducts());
+		mnv.setViewName("product/error");
+		mnv.addObject("product", prod);
+		mnv.addObject("categories", prod.getCategoryAssignments());
 		return mnv;
     }
 	

@@ -5,7 +5,12 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.TreeSet;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import group3.com.example.retail.category.Category;
 import group3.com.example.retail.product.Product;
@@ -14,14 +19,16 @@ import group3.com.example.retail.product.Product;
 // No Lombok, No Database, created at the start of the program and when maunally forced to rebuild
 public class Catalog {
 
-	private static Catalog storefrontCatalog = null; // singleton Constructor	
+	private static Catalog storefrontCatalog = null;      // singleton Constructor	
 	
 	private Map<Long, List<Long>> catalogMap = null;      // Category ID (parent) --> List<Category Id's>  (children)
-	private Map<Long, Category> categoryMap = null;            // Category ID --> Category 
-	private Map<Long, Product> productMap = null;              // Product ID --> Product
-//	private Map<String, Long> prodNameToId = null;
-	private Map<String, Long> catNameToId = null;
-															   // Product(
+	
+	private Map<Long, Category> categoryMap = null;       // Category ID --> Category 
+	private Map<String, Long> catNameToId = null;		  // CategoryName --> CategoryId
+	
+	private Map<Long, Product> productMap = null;         // ProductID --> Product
+	private Map<String, Long> prodNameToId = null;		  // ProdutName --> ProductID
+	
 	
 	//////////////////////////////// STATIC  START ////////////////////////////////////////
 	public static Catalog getCatalog(List<Product> prodList, List<Category> catList) {
@@ -53,11 +60,12 @@ public class Catalog {
 		categoryMap = new HashMap<Long, Category>();
 		productMap = new HashMap<Long, Product>();
 		catNameToId = new HashMap<String, Long>();
+		prodNameToId = new HashMap<String, Long>();
 		
-		// initalize productMap
+		// initalize productMap and prodNameToId
 		for(Product prod : prodList) {
 			productMap.put(prod.getId(), prod);
-//			prodNameToId.put(prod.getName(), prod.getId());
+			prodNameToId.put(prod.getName().toLowerCase(), prod.getId());
 		}
 		
 		// initialize categoryMap
@@ -77,20 +85,21 @@ public class Catalog {
 //				catalogMap.put(categoryID, new ArrayList<long>());
 			}
 		}
-		//
 		
 	}
+	
 	
 	public Collection<Category> getAllStoreCategories() {
 		return categoryMap.values();
 	}
+	
 	
 	public Collection<Product> getAllProducts() {
 		return productMap.values();
 	}
 	
 	
-	public List<Product> getAllProductsInCategory(String categoryId) {
+	public Set<Product> getAllProductsInCategory(String categoryId) {
 		// check to see if there is products in the Category
 		List <Product> productList = new ArrayList<Product>();
 		Category cat = categoryMap.get(categoryId);
@@ -98,20 +107,32 @@ public class Catalog {
 //		for(Category prodId : cat.getCategoryAssignments()) {
 //			productList.add(productMap.get(prodId));
 //		}
-		return productList;
+		return cat.getProducts();
 	}
+	
 	
 	public Category getCategoryByName(String name) {
 		return categoryMap.get(catNameToId.get(name));
 	}
 	
+	
 	public Product getProductById(Long prodId) {
 		return productMap.get(prodId);
 	}
 	
-
+	
+	public Product getProductByName(String name) {
+		String lowerCaseName = name.toLowerCase().strip();
+		System.out.println("Search Phrase: '" + lowerCaseName + "'");
+		String prodId = prodNameToId.get(lowerCaseName) == null ? Long.toString(prodNameToId.get(lowerCaseName)) : "-5";
+		if(!prodId.equals("-5")) {
+			Product prod = productMap.get(prodId);
+			return prod;
+		}
+		return null;
+	}
+	
 //
-
 	
 //	private void buildTheCatalogNavigation(Category currRoot) {
 //		ArrayList<Category> catList = getParentCategories(currRoot.getId());
