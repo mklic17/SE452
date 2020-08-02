@@ -1,11 +1,11 @@
 /*
 DB Schema
-Product(ID, name, description, price, isActive);
-Category(ID, name);
-ProductsInCategory(ID, name);
+Product(ID, name, price, summary, description, image);
+Category(ID, name, parent);
+ProductsInCategory(productID, categoryID);
 Customer(ID, firstName, lastName, email); -- Admin
-Orders(ID, customerID, datePlaced);
-OrderItems(Id, orderID, productID, productTotal);
+Orders(ID, datePlaced, productId, productName, price);
+Review(Id, productId, userId, rating, comment)
 */
 
 --- Product
@@ -13,6 +13,7 @@ INSERT INTO Product(name, description, summary, price, image) VALUES('Baseball B
 INSERT INTO Product(name, description, summary, price, image) VALUES('Soccer Ball', 'This is a ball used in the game of soccer', 'Size 5 soccer ball', '29.99', 'https://www.soccermaster.com/wp-content/uploads/sc3101_008_nike_pitch_training_ball_sm_01.jpg');
 INSERT INTO Product(name, description, summary, price, image) VALUES('Basketball Shooting Sleeve', 'Sleeve that goes on your arm to aid in the Basketball shooting form', 'Womens basketball', '19.99', 'https://dks.scene7.com/is/image/GolfGalaxy/16WILUJTVLTNXXXXXBKB?qlt=70&wid=600&fmt=pjpeg');
 INSERT INTO Product(name, description, summary, price, image) VALUES('Golf Clubs', 'These are golf Clubs used to play golf', '13 club set', '399.99', 'https://images-na.ssl-images-amazon.com/images/I/71uXuqys2NL._AC_SX425_.jpg');
+
 
 --- Category
 -- DECLARE @sportsID AS VARCHAR;
@@ -39,6 +40,11 @@ INSERT INTO Customer (username, first_name, last_name, email) VALUES ('clax', 'T
 INSERT INTO Customer (username, first_name, last_name, email) VALUES ('aaaaa', 'Michael', 'Scott',  'mscott@dundermifflin.com');
 INSERT INTO Customer (username, first_name, last_name, email) VALUES ('aaaab', 'Dwight', 'Schrute',  'dschture@dundermifflin.com');
 INSERT INTO Customer (username, first_name, last_name, email) VALUES ('aaaac', 'Jim', 'Halpert',  'jhalpert@dundermifflin.com');
+
+
+-- Review
+INSERT INTO Review(productId, rating, comment) VALUES ((SELECT ID FROM Product WHERE Name = 'Baseball Bat'), '4', 'The baseball bat worked well. It was not as balanced I was hoping but it performs well');
+INSERT INTO Review(productId, rating, comment) VALUES ((SELECT ID FROM Product WHERE Name = 'Soccer Ball'), '1', 'The Soccer ball popped the first time I used it. Please refund me.');
 
 -- Cart
 
@@ -79,7 +85,7 @@ INSERT INTO Customer (username, first_name, last_name, email) VALUES ('aaaac', '
 -- INSERT INTO Cart_Products (cart_ID, product_ID) VALUES (1, 3);
 -- INSERT INTO Cart_Products (cart_ID, product_ID) VALUES (2, 4);
 
--- 
+--
 -- INSERT INTO Orders (ID, datePlaced, productID, productname, price)  VALUES ('1', now(), 'bb', 'Soccer Ball', '29.99');
 -- INSERT INTO Orders (ID, datePlaced, productID, productname, price)  VALUES ('2345', now(), 'ab', 'Baseball Bat', '50.00');
 -- INSERT INTO Orders (ID, datePlaced, productID, productname, price)  VALUES ('3546465', now(), 'cb', 'Golf Clubs', '399.99');
@@ -106,4 +112,3 @@ INSERT INTO Customer (username, first_name, last_name, email) VALUES ('aaaac', '
 --
 -- INSERT INTO Orders (ID, customerID, datePlaced)  VALUES ('000004', 'aaaac', now());
 -- INSERT INTO OrderItems (Id, orderID, productID, productTotal) VALUES ('dsglkdsg', '000004', '000002', 29.99);
-

@@ -9,12 +9,12 @@ OrderItems(Id, orderID, productID, productTotal);
 */
 
 CREATE TABLE Product (
-    ID SERIAL,
+    Id SERIAL,
     name VARCHAR(40) NOT NULL,
     price VARCHAR(18),
-    summary Varchar(200),
+    summary VARCHAR(200),
     description VARCHAR(10000),
-    image varchar(200),
+    image VARCHAR(200),
     -- isActive BOOLEAN DEFAULT true,
 
     PRIMARY KEY (Id)
@@ -22,7 +22,7 @@ CREATE TABLE Product (
 
 
 CREATE TABLE Category (
-    ID SERIAL,
+    Id SERIAL,
     name VARCHAR(40) NOT NULL,
     parent VARCHAR(20), -- parent or child?
 
@@ -40,19 +40,19 @@ CREATE TABLE Products_In_Category (
 );
 
  CREATE TABLE Orders (
-     ID serial,
+     Id SERIAL,
      datePlaced TIMESTAMP NOT NULL,
      productID VARCHAR(18) NOT NULL,
-     productname VARCHAR(30),
+     productName VARCHAR(30),
      price VARCHAR(30),
 
      PRIMARY KEY (Id)
  );
 
  CREATE TABLE Refund (
- 	RefundID SERIAL,
- 	ordernumber VARCHAR(18),
- 	ProductName VARChAR(30),
+ 	refundId SERIAL,
+ 	orderNumber VARCHAR(18),
+ 	productName VARCHAR(30),
  	reason VARCHAR(500),
 
  	PRIMARY KEY (RefundID)
@@ -60,12 +60,13 @@ CREATE TABLE Products_In_Category (
 
 
  CREATE TABLE Review (
- 	ID serial,
- 	productid VARCHAR(18),
- 	userid varchar(18),
- 	comment varchar(50),
+ 	Id SERIAL,
+ 	productId VARCHAR(18),
+ 	--userId varchar(18),
+  rating varchar(1),
+ 	comment varchar(1000),
 
- 	primary key (id)
+ 	primary key (ID)
  	);
 
  CREATE TABLE Customer (
@@ -96,4 +97,3 @@ CREATE TABLE Products_In_Category (
     FOREIGN KEY (cart_ID) REFERENCES Cart(cart_ID),
     FOREIGN KEY (product_ID) REFERENCES Product(ID)
 );
-

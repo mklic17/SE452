@@ -31,13 +31,13 @@ public class Application implements InitializingBean {
 		Collection<Category> catCol = storefront.getAllStoreCategories();
 		Collection<Product> prodCol = storefront.getAllProducts();
 		
-		for(Category cat : catCol) {
-			System.out.println("CategoryName: " + cat.getName());
-		}
-		
-		for(Product prod : prodCol) {
-			System.out.println("ProductName: " + prod.getName());
-		}
+//		for(Category cat : catCol) {
+//			System.out.println("CategoryName: " + cat.getName());
+//		}
+//		
+//		for(Product prod : prodCol) {
+//			System.out.println("ProductName: " + prod.getName());
+//		}
 	}
 	
 

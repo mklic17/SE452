@@ -8,16 +8,15 @@ import javax.persistence.*;
 
 @Data
 @Entity
-
 public class Review {
 	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String productid;
-	private String userID;
+	private String productId;
+//	private String userID;
+	private int rating;
 	private String comment;
 
-
-
 }
+//

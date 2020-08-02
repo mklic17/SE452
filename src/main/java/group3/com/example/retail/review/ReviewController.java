@@ -10,12 +10,13 @@ import org.springframework.web.servlet.ModelAndView;
 public class ReviewController {
 	
 	
-	@GetMapping("/") // localhost:7996/review/
+	@GetMapping({"/", ""})
 	public ModelAndView getReview() {
 		ModelAndView mnv = new ModelAndView();
 		mnv.setViewName("review/review");
 		return mnv;
 	}
+	//
 	
 	
 
